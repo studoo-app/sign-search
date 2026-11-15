@@ -9,6 +9,10 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), et les 
 
 ## [Non publié]
 
+### Modifié
+
+- CI : actions `checkout` et `setup-node` passées en v6 (Node 24), car Node 20 est déprécié sur GitHub Actions.
+
 ## [0.1.0] - 2026-11-15
 
 Première version.
