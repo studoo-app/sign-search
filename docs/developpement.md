@@ -83,18 +83,22 @@ Voir [Architecture → Si sign.com change](architecture.md#si-signcom-change).
 
 La publication est automatisée par **GitHub Actions** (`.github/workflows/release.yml`).
 
+Au fil des changements, notez-les dans la section `## [Non publié]` de `CHANGELOG.md` (rubriques *Ajouté*, *Modifié*, *Corrigé*, *Supprimé*).
+
 1. Mettre à jour `version` dans `manifest.json` **et** dans `package.json` (format `MAJEUR.MINEUR.CORRECTIF`).
-2. `npm test`.
-3. Commit, puis tag :
+2. Dans `CHANGELOG.md`, renommer `## [Non publié]` en `## [0.2.0] - AAAA-MM-JJ`, ajouter un nouveau `## [Non publié]` vide au-dessus, et mettre à jour les liens en bas du fichier. **Le texte de la Release est tiré de cette section** : sans elle, la publication échoue.
+3. `npm test`.
+4. Commit, puis tag :
    ```bash
    git commit -am "Version 0.2.0"
    git tag v0.2.0
    git push && git push origin v0.2.0
    ```
-4. Le workflow **Release** fait le reste :
+5. Le workflow **Release** fait le reste :
    - il lance les tests ;
    - il vérifie que le tag correspond à la version du manifest, et échoue sinon ;
    - il construit le zip ;
+   - il reprend la section du CHANGELOG comme texte ;
    - il crée la Release `v0.2.0` avec deux fichiers : `sign-search.zip` et `sign-search-0.2.0.zip`.
 
 Le lien `…/releases/latest/download/sign-search.zip` pointe toujours vers la dernière version.
