@@ -9,6 +9,8 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), et les 
 
 ## [Non publié]
 
+## [0.1.1] - 2026-11-15
+
 ### Modifié
 
 - CI : actions `checkout` et `setup-node` passées en v6 (Node 24), car Node 20 est déprécié sur GitHub Actions.
@@ -31,5 +33,6 @@ Première version.
 - Documentation dans `docs/` : installation, guide d'utilisation, dépannage, architecture, développement, confidentialité.
 - Publication automatique : un workflow GitHub Actions construit le zip et le publie dans une Release.
 
-[Non publié]: https://github.com/bfoujols/sign-search/compare/v0.1.0...HEAD
+[Non publié]: https://github.com/bfoujols/sign-search/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/bfoujols/sign-search/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/bfoujols/sign-search/releases/tag/v0.1.0
