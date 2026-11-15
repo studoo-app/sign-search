@@ -10,6 +10,7 @@
 
 ```
 sign-search/
+├── .github/workflows/  release.yml : tests + zip + Release GitHub
 ├── manifest.json        Manifest V3
 ├── package.json         scripts npm (test, zip)
 ├── icons/               icônes 16/32/48/128 px
@@ -80,15 +81,25 @@ Voir [Architecture → Si sign.com change](architecture.md#si-signcom-change).
 
 ## Publier une version
 
+La publication est automatisée par **GitHub Actions** (`.github/workflows/release.yml`).
+
 1. Mettre à jour `version` dans `manifest.json` **et** dans `package.json` (format `MAJEUR.MINEUR.CORRECTIF`).
 2. `npm test`.
 3. Commit, puis tag :
    ```bash
    git commit -am "Version 0.2.0"
    git tag v0.2.0
-   git push && git push --tags
+   git push && git push origin v0.2.0
    ```
-4. `npm run zip`. Joindre `sign-search.zip` à une *Release* GitHub si on veut une archive téléchargeable.
+4. Le workflow **Release** fait le reste :
+   - il lance les tests ;
+   - il vérifie que le tag correspond à la version du manifest, et échoue sinon ;
+   - il construit le zip ;
+   - il crée la Release `v0.2.0` avec deux fichiers : `sign-search.zip` et `sign-search-0.2.0.zip`.
+
+Le lien `…/releases/latest/download/sign-search.zip` pointe toujours vers la dernière version.
+
+On peut aussi lancer le workflow à la main (onglet **Actions → Release → Run workflow**). Il publie alors la version indiquée dans le manifest.
 
 ## Pistes d'évolution
 
