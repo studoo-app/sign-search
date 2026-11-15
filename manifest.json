@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "Sign.com Recherche",
+  "short_name": "SignSearch",
+  "version": "0.1.0",
+  "description": "Recherche rapide dans vos documents sign.com : noms complets des signataires, filtres par statut et par classe, export CSV.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Rechercher dans sign.com",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "commands": {
+    "toggle-panel": {
+      "suggested_key": { "default": "Alt+Shift+S" },
+      "description": "Ouvrir / fermer le panneau de recherche"
+    }
+  },
+  "host_permissions": ["https://sign.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://sign.com/*"],
+      "js": ["src/core.js", "src/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["src/panel.css"],
+      "matches": ["https://sign.com/*"]
+    }
+  ]
+}
