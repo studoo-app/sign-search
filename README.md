@@ -3,6 +3,8 @@
 Extension Chrome / Brave qui ajoute un panneau de recherche à [sign.com](https://sign.com).
 Elle affiche le **nom complet et l'email de chaque signataire** (la liste sign.com ne montre que des initiales). Elle indique aussi **qui a signé et qui manque** sur chaque document.
 
+📖 **Documentation complète : [docs/](docs/README.md)** (installation, guide d'utilisation, dépannage, architecture, développement, confidentialité).
+
 ## Fonctionnalités
 
 - **Recherche instantanée** dans le nom du fichier, les noms, prénoms et emails des signataires. La recherche ignore les accents et les majuscules. Avec plusieurs mots, un document doit tous les contenir (ex. `martin mco1`).
