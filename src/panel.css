@@ -139,6 +139,10 @@ a.name:hover { color: var(--accent); text-decoration: underline; }
 .chip.me { opacity: 0.55; }
 .chip.hit { border-color: var(--accent); background: var(--accent-soft); opacity: 1; }
 .chip.pending { border-style: dashed; border-color: var(--wait); }
+/* Document « À signer » : signataire attendu, même orange que le badge « signatures manquantes ». */
+.chip.to-sign { background: #fdf1df; border-color: var(--wait); opacity: 1; }
+.chip.to-sign .who { color: var(--wait); font-weight: 600; }
+.chip.to-sign.hit { border-color: var(--accent); }
 
 .ico { font-size: 11px; font-weight: 700; }
 .ico.ok { color: var(--ok); }

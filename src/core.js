@@ -391,7 +391,48 @@
     return m;
   }
 
+  /**
+   * Devine l'adresse du compte connecté à sign.com, que l'API ne fournit pas.
+   * Un document « À signer » n'apparaît que parce que le compte connecté doit le signer :
+   * ce compte est donc en attente dans TOUS les documents « À signer » dont le détail est chargé.
+   * S'il reste plusieurs candidats, on garde l'expéditeur des autres documents du compte,
+   * puis la personne la plus présente dans l'ensemble des documents.
+   * Renvoie l'adresse normalisée, ou "" si on ne peut pas trancher.
+   * @param {Array} records  résultats de toRecord()
+   * @param {Map} details    id → Map(email normalisé → { status }) (autres valeurs ignorées)
+   */
+  function guessAccountEmail(records, details) {
+    let candidates = null;
+    for (const r of records || []) {
+      if (r.status !== "to_sign") continue;
+      const m = details && details.get(r.id);
+      if (!(m instanceof Map)) continue;
+      const waiting = new Set();
+      for (const [email, d] of m) if (email && d && d.status === "pending") waiting.add(email);
+      candidates = candidates ? new Set([...candidates].filter((e) => waiting.has(e))) : waiting;
+    }
+    if (!candidates || !candidates.size) return "";
+    if (candidates.size === 1) return [...candidates][0];
+
+    const ownSenders = new Set(
+      (records || []).filter((r) => r.status !== "to_sign").map((r) => normalize(r.sender && r.sender.email)).filter(Boolean)
+    );
+    const senders = [...candidates].filter((e) => ownSenders.has(e));
+    if (senders.length === 1) return senders[0];
+
+    const pool = senders.length ? senders : [...candidates];
+    const count = new Map(pool.map((e) => [e, 0]));
+    for (const r of records || []) {
+      const seen = new Set((r.signees || []).map((s) => normalize(s.email)));
+      seen.add(normalize(r.sender && r.sender.email));
+      for (const e of seen) if (count.has(e)) count.set(e, count.get(e) + 1);
+    }
+    const ranked = [...count].sort((a, b) => b[1] - a[1]);
+    return ranked.length === 1 || ranked[0][1] > ranked[1][1] ? ranked[0][0] : "";
+  }
+
   const api = {
+    guessAccountEmail,
     FormatError,
     parseDocumentList,
     detailApiUrl,

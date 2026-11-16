@@ -9,6 +9,10 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), et les 
 
 ## [Non publié]
 
+### Modifié
+
+- Documents **À signer** : votre propre ligne (le compte connecté, qui doit signer) est surlignée sur fond orange, comme le badge « signatures manquantes ». sign.com ne fournit pas l'adresse du compte connecté : l'extension la déduit des documents à signer.
+
 ## [0.2.2] - 2026-11-16
 
 ### Corrigé

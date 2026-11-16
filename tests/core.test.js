@@ -272,3 +272,32 @@ test("exemples documentés dans docs/fr/nommage.md et docs/en/file-naming.md", (
   };
   for (const [nom, attendu] of Object.entries(cas)) assert.equal(C.parseClasse(nom), attendu, nom);
 });
+
+test("guessAccountEmail : retrouve le compte connecté dans les documents « À signer »", () => {
+  const rec = (id, status, sender, emails) => ({ id, status, sender: { email: sender }, signees: emails.map((email) => ({ email })) });
+  const det = (entries) => new Map(entries.map(([e, st]) => [e, { status: st }]));
+  // Comme sur sign.com : « moi » et une collègue sont en attente dans tous les documents à signer.
+  const records = [
+    rec("a", "to_sign", "x@ext.test", ["p1@ext.test", "moi@ecole.test", "coll@ecole.test", "e1@ecole.test"]),
+    rec("b", "to_sign", "y@ext.test", ["e2@ecole.test", "moi@ecole.test", "coll@ecole.test"]),
+    rec("c", "sealed", "z@ext.test", ["e3@ecole.test", "moi@ecole.test"]),
+  ];
+  const details = new Map([
+    ["a", det([["p1@ext.test", "pending"], ["moi@ecole.test", "pending"], ["coll@ecole.test", "pending"], ["e1@ecole.test", "completed"]])],
+    ["b", det([["e2@ecole.test", "completed"], ["moi@ecole.test", "pending"], ["coll@ecole.test", "pending"]])],
+    ["c", "loading"],
+  ]);
+  // Égalité moi / collègue dans les « À signer » : la présence dans les autres documents tranche.
+  assert.equal(C.guessAccountEmail(records, details), "moi@ecole.test");
+
+  // L'expéditeur des documents du compte l'emporte.
+  const withSender = [...records.slice(0, 2), rec("d", "pending", "coll@ecole.test", ["e4@ecole.test"])];
+  assert.equal(C.guessAccountEmail(withSender, details), "coll@ecole.test");
+
+  // Un seul candidat : pas besoin de départager.
+  assert.equal(C.guessAccountEmail(records.slice(1, 2), new Map([["b", det([["moi@ecole.test", "pending"], ["coll@ecole.test", "completed"]])]])), "moi@ecole.test");
+
+  // Égalité impossible à trancher, ou aucun détail chargé : personne.
+  assert.equal(C.guessAccountEmail(records.slice(0, 2), details), "");
+  assert.equal(C.guessAccountEmail(records, new Map()), "");
+});

@@ -393,6 +393,7 @@
     const tokens = C.tokenize(state.query);
     const senders = new Set(state.senders.map(C.normalize));
     const list = h("ul", { class: "docs" });
+    const account = C.guessAccountEmail(state.records, state.details);
 
     for (const r of results.slice(0, state.limit)) {
       const hit = C.matchingSignees(r, tokens);
@@ -402,12 +403,15 @@
 
       const chips = r.signees.map((s) => {
         const st = stMap ? stMap.get(C.normalize(s.email)) : null;
-        const cls = ["chip", hit.has(s.id) ? "hit" : "", senders.has(C.normalize(s.email)) ? "me" : "", st && st.status === "pending" ? "pending" : ""]
+        const waiting = st && st.status === "pending";
+        // Document « À signer » (Sign document) : le compte connecté, qui doit signer, est surligné en orange.
+        const toSign = waiting && r.status === "to_sign" && !!account && C.normalize(s.email) === account;
+        const cls = ["chip", hit.has(s.id) ? "hit" : "", senders.has(C.normalize(s.email)) ? "me" : "", toSign ? "to-sign" : waiting ? "pending" : ""]
           .filter(Boolean)
           .join(" ");
         return h(
           "li",
-          { class: cls, title: s.email },
+          { class: cls, title: toSign ? s.email + " — signature attendue" : s.email },
           statusIcon(st),
           h("span", { class: "who" }, s.name || s.email || "?"),
           s.name && s.email ? h("span", { class: "mail" }, s.email) : null
