@@ -1,4 +1,4 @@
-# Sign.com Recherche
+# Sign Search Convention
 
 Extension Chrome / Brave qui ajoute un panneau de recherche à [sign.com](https://sign.com). Elle affiche le nom complet et l'email de chaque signataire, au lieu des seules initiales, et indique qui a signé. On peut filtrer par statut et par classe, et exporter en CSV.
 

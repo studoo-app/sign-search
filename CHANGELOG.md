@@ -1,6 +1,6 @@
 # Changelog
 
-Toutes les évolutions notables de l'extension sont listées ici.
+Toutes les évolutions notables de l'extension Sign Search Convention sont listées ici.
 
 Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), et les numéros de version suivent le [versionnage sémantique](https://semver.org/lang/fr/) :
 - **MAJEUR** : changement incompatible ;
@@ -8,6 +8,20 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), et les 
 - **CORRECTIF** : correction.
 
 ## [Non publié]
+
+## [0.2.0] - 2026-11-16
+
+### Modifié
+
+- L'extension s'appelle désormais **Sign Search Convention** (auparavant « Sign.com Recherche »).
+
+### Ajouté
+
+- Pied du panneau : numéro de version de l'extension et mention « Créé par Studoo Labs », avec un lien vers https://github.com/studoo-app.
+
+### Corrigé
+
+- Le pied du panneau affichait le mot « null » dans la vue Personnes.
 
 ## [0.1.1] - 2026-11-15
 
@@ -33,6 +47,7 @@ Première version.
 - Documentation dans `docs/` : installation, guide d'utilisation, dépannage, architecture, développement, confidentialité.
 - Publication automatique : un workflow GitHub Actions construit le zip et le publie dans une Release.
 
-[Non publié]: https://github.com/bfoujols/sign-search/compare/v0.1.1...HEAD
+[Non publié]: https://github.com/bfoujols/sign-search/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/bfoujols/sign-search/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/bfoujols/sign-search/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/bfoujols/sign-search/releases/tag/v0.1.0

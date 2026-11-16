@@ -35,9 +35,9 @@ Placez le dossier à un endroit **stable**, par exemple `Documents/Extensions/si
 1. Activez le **Mode développeur** (interrupteur en haut à droite).
 2. Cliquez sur **Charger l'extension non empaquetée**.
 3. Sélectionnez le dossier qui contient `manifest.json`. Attention : pas un dossier parent, ni le zip.
-4. La carte « Sign.com Recherche » apparaît. Activez-la si elle ne l'est pas déjà.
+4. La carte « Sign Search Convention » apparaît. Activez-la si elle ne l'est pas déjà.
 
-**Conseil** : épinglez l'icône. Cliquez sur la pièce de puzzle dans la barre d'outils, puis sur la punaise à côté de « Sign.com Recherche ».
+**Conseil** : épinglez l'icône. Cliquez sur la pièce de puzzle dans la barre d'outils, puis sur la punaise à côté de « Sign Search Convention ».
 
 ## 3. Vérifier
 
@@ -48,12 +48,12 @@ Placez le dossier à un endroit **stable**, par exemple `Documents/Extensions/si
 ## Mettre à jour
 
 1. Téléchargez de nouveau `sign-search.zip` et remplacez le contenu du dossier par celui de l'archive. Gardez le **même dossier**, pour que le navigateur retrouve l'extension. Avec Git, faites simplement `git pull`.
-2. Dans la page des extensions, cliquez sur l'icône **↻** de la carte « Sign.com Recherche ».
+2. Dans la page des extensions, cliquez sur l'icône **↻** de la carte « Sign Search Convention ».
 3. Rechargez l'onglet sign.com.
 
 ## Changer le raccourci clavier
 
-Le raccourci par défaut est **Alt + Maj + S**. Pour le modifier, ouvrez `chrome://extensions/shortcuts` (ou `brave://extensions/shortcuts`). Cherchez ensuite « Sign.com Recherche » → « Ouvrir / fermer le panneau de recherche ».
+Le raccourci par défaut est **Alt + Maj + S**. Pour le modifier, ouvrez `chrome://extensions/shortcuts` (ou `brave://extensions/shortcuts`). Cherchez ensuite « Sign Search Convention » → « Ouvrir / fermer le panneau de recherche ».
 
 ## Désinstaller
 

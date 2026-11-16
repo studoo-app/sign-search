@@ -86,15 +86,27 @@
   const tabDocs = h("button", { class: "tab", onclick: () => setView("docs") }, "Documents");
   const tabPeople = h("button", { class: "tab", onclick: () => setView("people") }, "Personnes");
   const body = h("div", { class: "body" });
-  const footer = h("div", { class: "footer" });
+  const footerInfo = h("div", { class: "footer-info" });
+  const VERSION = chrome.runtime.getManifest().version;
+  const footer = h(
+    "div",
+    { class: "footer" },
+    footerInfo,
+    h(
+      "div",
+      { class: "credit" },
+      "Sign Search Convention v" + VERSION + " · Créé par ",
+      h("a", { href: "https://github.com/studoo-app", target: "_blank", rel: "noopener", title: "Studoo Labs sur GitHub" }, "Studoo Labs")
+    )
+  );
 
   const panel = h(
     "aside",
-    { class: "panel", role: "dialog", "aria-label": "Recherche sign.com" },
+    { class: "panel", role: "dialog", "aria-label": "Sign Search Convention" },
     h(
       "header",
       { class: "head" },
-      h("strong", { class: "title" }, "Recherche sign.com"),
+      h("strong", { class: "title" }, "Sign Search Convention"),
       countEl,
       h("span", { class: "spacer" }),
       h("button", { class: "btn", title: "Recharger la liste", onclick: () => load(true) }, "↻ Actualiser"),
@@ -279,7 +291,7 @@
     if (state.loading && !state.records.length) {
       countEl.textContent = "";
       body.replaceChildren(h("div", { class: "empty" }, "Chargement des documents…"));
-      footer.replaceChildren();
+      footerInfo.replaceChildren();
       return;
     }
     if (state.error) {
@@ -287,7 +299,7 @@
       body.replaceChildren(
         h("div", { class: "empty error" }, state.error, h("br"), h("button", { class: "btn", onclick: () => load(true) }, "Réessayer"))
       );
-      footer.replaceChildren();
+      footerInfo.replaceChildren();
       return;
     }
 
@@ -297,7 +309,9 @@
     else renderDocs(results);
 
     const loadingDetails = [...state.details.values()].filter((v) => v === "loading").length;
-    footer.replaceChildren(
+    // replaceChildren (DOM) afficherait « null » en texte : on filtre les absents.
+    footerInfo.replaceChildren(
+      ...[
       h(
         "span",
         {},
@@ -315,7 +329,8 @@
             },
             "Vérifier qui a signé (résultats affichés)"
           )
-        : null
+        : null,
+      ].filter(Boolean)
     );
   }
 

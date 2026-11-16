@@ -80,5 +80,5 @@ jobs:
             gh release upload "$TAG" sign-search.zip "sign-search-$VERSION.zip" --clobber
           else
             gh release create "$TAG" sign-search.zip "sign-search-$VERSION.zip" \
-              --title "Sign.com Recherche $VERSION" --notes-file notes.md --target "$GITHUB_SHA"
+              --title "Sign Search Convention $VERSION" --notes-file notes.md --target "$GITHUB_SHA"
           fi

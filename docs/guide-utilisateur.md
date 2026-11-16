@@ -15,7 +15,7 @@ Si vous cliquez sur l'icône alors que vous n'êtes pas sur sign.com, l'extensio
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│ Recherche sign.com   312 / 507 documents   ↻ Actualiser ⬇ CSV ✕ │
+│ Sign Search Convention  312 / 507 docs   ↻ Actualiser ⬇ CSV ✕ │
 ├──────────────────────────────────────────────────────────────┤
 │ [ Nom d'étudiant, tuteur, entreprise, email, fichier…      ] │
 │ [Statut ▾] [Classe ▾] [Tri ▾]            [Documents][Personnes]│
