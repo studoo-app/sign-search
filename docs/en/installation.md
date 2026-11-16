@@ -15,7 +15,7 @@ The extension is not published on the Chrome Web Store. It is installed in **dev
 
 > https://github.com/studoo-app/sign-search/releases/latest/download/sign-search.zip
 
-This archive is built automatically by GitHub Actions for every new version. It contains only the extension (`manifest.json`, `src/`, `icons/`), without tests or documentation. Previous versions are on the repository's **Releases** page.
+This archive is built automatically by GitHub Actions for every new version. It contains only the extension and its licence (`manifest.json`, `LICENSE`, `src/`, `icons/`), without tests or documentation. Previous versions are on the repository's **Releases** page.
 
 > While the repository is **private**, you must be signed in to GitHub with an account that has access to it to download the archive.
 

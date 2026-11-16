@@ -25,3 +25,9 @@ Sign Search Convention est une extension pour Chrome et Brave. Elle ajoute à [s
 ## Version
 
 Cette documentation correspond à la version **0.2.0** de l'extension. L'historique des versions est dans le [CHANGELOG](../../CHANGELOG.md).
+
+## Licence
+
+Copyright © 2026 Studoo Labs. L'extension est distribuée sous [licence publique de l'Union européenne v1.2](../../LICENSE) (EUPL-1.2). Le texte officiel existe dans toutes les langues de l'UE, dont le [français](https://eupl.eu/1.2/fr/), et chaque version fait également foi.
+
+En résumé : vous pouvez utiliser, copier, modifier et redistribuer l'extension. Si vous distribuez une version modifiée, elle doit rester sous EUPL (ou une licence compatible) avec son code source.
