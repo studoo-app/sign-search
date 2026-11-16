@@ -6,8 +6,26 @@ The extension is not published on the Chrome Web Store. It is installed in **dev
 
 ## Requirements
 
-- A recent version of Google Chrome, Brave or Microsoft Edge (Manifest V3).
+- A compatible browser: Chrome, Brave, Edge or another recent Chromium browser (see the [table below](#compatible-browsers)).
 - A sign.com account signed in in that browser.
+
+## Compatible browsers
+
+The extension works in **Chromium**-based browsers (Manifest V3, version 88 or later).
+
+| Browser | Compatible | Extensions page | Notes |
+|---|---|---|---|
+| Google Chrome | ✅ Yes | `chrome://extensions` | Reference browser. |
+| Brave | ✅ Yes | `brave://extensions` | Reference browser. |
+| Microsoft Edge | ✅ Yes | `edge://extensions` | **Developer mode** is in the left-hand menu. |
+| Opera / Opera GX | ✅ Yes | `opera://extensions` | Chromium engine. |
+| Vivaldi | ✅ Yes | `vivaldi://extensions` | Chromium engine. |
+| Arc | ✅ Yes | `arc://extensions` | Chromium engine. |
+| Firefox | ❌ No | — | Firefox does not accept the background *service worker* declared in the manifest. A Firefox version is listed as an [idea for later](development.md#ideas-for-later). |
+| Safari | ❌ No | — | The extension would have to be converted with Xcode and distributed through Apple. |
+| Mobile browsers (Android, iOS) | ❌ No | — | Chrome and Safari on mobile do not accept this kind of extension. |
+
+Chrome and Brave are the reference browsers. The other Chromium browsers use the same engine and APIs, but are not tested for every release: if something goes wrong, open an issue on the repository.
 
 ## 1. Get the extension
 
@@ -28,11 +46,7 @@ Put the folder somewhere **permanent**, for example `Documents/Extensions/sign-s
 
 ## 2. Load the extension
 
-| Browser | Address to open |
-|---|---|
-| Chrome | `chrome://extensions` |
-| Brave | `brave://extensions` |
-| Edge | `edge://extensions` |
+Open your browser's extensions page, for example `chrome://extensions` or `brave://extensions` (the addresses for other browsers are in the [compatible browsers table](#compatible-browsers)).
 
 1. Turn on **Developer mode** (toggle at the top right).
 2. Click **Load unpacked**.

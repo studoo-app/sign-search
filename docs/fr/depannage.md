@@ -81,7 +81,7 @@ Non. Elle ne fait que des lectures.
 Elle affiche ce que renvoie la liste « All Documents » du compte connecté, comme le site lui-même.
 
 **Fonctionne-t-elle sur Firefox ou Safari ?**
-Pas en l'état. Elle est écrite pour les navigateurs Chromium (Chrome, Brave, Edge, Opera, Vivaldi).
+Pas en l'état. Elle est écrite pour les navigateurs Chromium (Chrome, Brave, Edge, Opera, Vivaldi, Arc). Voir le [tableau des navigateurs compatibles](installation.md#navigateurs-compatibles).
 
 **Combien de documents peut-elle gérer ?**
 Plusieurs milliers sans difficulté : la recherche se fait en mémoire. L'affichage montre 150 résultats à la fois, avec un bouton « Afficher plus ».

@@ -89,7 +89,7 @@ No. It only reads.
 It shows what the signed-in account's "All Documents" list returns, just like the site itself.
 
 **Does it work in Firefox or Safari?**
-Not as it stands. It is written for Chromium browsers (Chrome, Brave, Edge, Opera, Vivaldi).
+Not as it stands. It is written for Chromium browsers (Chrome, Brave, Edge, Opera, Vivaldi, Arc). See the [compatible browsers table](installation.md#compatible-browsers).
 
 **How many documents can it handle?**
 Several thousand without trouble: the search runs in memory. The display shows 150 results at a time, with an "Afficher plus" (Show more) button.

@@ -8,7 +8,7 @@ Sign Search Convention is a Chrome and Brave extension. It adds a panel to [sign
 
 | Page | Audience | What's inside |
 |---|---|---|
-| [Installation](installation.md) | Users | Install, update and uninstall in Chrome or Brave |
+| [Installation](installation.md) | Users | Compatible browsers; install, update and uninstall |
 | [User guide](user-guide.md) | Users | Search, filters, People view, signature status, CSV export |
 | [File naming](file-naming.md) | Users | The file-name pattern that lets the program and class be detected |
 | [Troubleshooting & FAQ](troubleshooting.md) | Users | Common problems and how to fix them |

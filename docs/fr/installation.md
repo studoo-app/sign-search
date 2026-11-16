@@ -6,8 +6,26 @@ L'extension n'est pas publiée sur le Chrome Web Store. On l'installe en **mode 
 
 ## Prérequis
 
-- Google Chrome, Brave ou Microsoft Edge, dans une version récente (Manifest V3).
+- Un navigateur compatible : Chrome, Brave, Edge ou un autre navigateur Chromium récent (voir le [tableau ci-dessous](#navigateurs-compatibles)).
 - Un compte sign.com ouvert dans ce navigateur.
+
+## Navigateurs compatibles
+
+L'extension fonctionne dans les navigateurs basés sur **Chromium** (Manifest V3, version 88 ou plus).
+
+| Navigateur | Compatible | Page des extensions | Remarques |
+|---|---|---|---|
+| Google Chrome | ✅ Oui | `chrome://extensions` | Navigateur de référence. |
+| Brave | ✅ Oui | `brave://extensions` | Navigateur de référence. |
+| Microsoft Edge | ✅ Oui | `edge://extensions` | Le **Mode développeur** se trouve dans le menu de gauche. |
+| Opera / Opera GX | ✅ Oui | `opera://extensions` | Moteur Chromium. |
+| Vivaldi | ✅ Oui | `vivaldi://extensions` | Moteur Chromium. |
+| Arc | ✅ Oui | `arc://extensions` | Moteur Chromium. |
+| Firefox | ❌ Non | — | Firefox n'accepte pas le *service worker* d'arrière-plan déclaré dans le manifest. Une version Firefox est une [piste d'évolution](developpement.md#pistes-dévolution). |
+| Safari | ❌ Non | — | Il faudrait convertir l'extension avec Xcode et la distribuer par Apple. |
+| Navigateurs mobiles (Android, iOS) | ❌ Non | — | Chrome et Safari sur mobile n'acceptent pas ce type d'extension. |
+
+Chrome et Brave sont les navigateurs de référence. Les autres navigateurs Chromium utilisent le même moteur et les mêmes API, mais ne sont pas testés à chaque version : en cas de problème, ouvrez un ticket sur le dépôt.
 
 ## 1. Récupérer l'extension
 
@@ -28,11 +46,7 @@ Placez le dossier à un endroit **stable**, par exemple `Documents/Extensions/si
 
 ## 2. Charger l'extension
 
-| Navigateur | Adresse à ouvrir |
-|---|---|
-| Chrome | `chrome://extensions` |
-| Brave | `brave://extensions` |
-| Edge | `edge://extensions` |
+Ouvrez la page des extensions de votre navigateur, par exemple `chrome://extensions` ou `brave://extensions` (les adresses des autres navigateurs sont dans le [tableau des navigateurs compatibles](#navigateurs-compatibles)).
 
 1. Activez le **Mode développeur** (interrupteur en haut à droite).
 2. Cliquez sur **Charger l'extension non empaquetée**.
