@@ -9,16 +9,19 @@
   const C = globalThis.SignSearchCore;
   const PAGE_SIZE = 150;
   const DETAIL_CONCURRENCY = 4;
+  const ISSUES_URL = "https://github.com/studoo-app/sign-search/issues";
 
   // ---------- état ----------
   const state = {
     open: false,
     loading: false,
     error: "",
+    formatError: false, // true si l'erreur vient d'un changement de l'API de sign.com
+    detailFormatError: "", // message si le détail des signatures n'a pas pu être lu
     items: new Map(), // id → élément brut
     records: [],
     senders: [],
-    details: new Map(), // id → Map(email → statut) | "loading" | "error"
+    details: new Map(), // id → Map(email → statut) | "loading" | "error" | "format"
     view: "docs", // "docs" | "people"
     query: "",
     status: "",
@@ -181,14 +184,18 @@
     if (state.loading) return;
     state.loading = true;
     state.error = "";
-    if (force) state.details.clear();
+    state.formatError = false;
+    if (force) {
+      state.details.clear();
+      state.detailFormatError = "";
+    }
     render();
     try {
       const res = await fetch("/api/documents", { credentials: "include", headers: { Accept: "application/json" } });
       if (res.status === 401 || res.status === 403) throw new Error("Vous n'êtes pas connecté à sign.com (ou la session a expiré).");
+      if (res.status === 404) throw new C.FormatError("liste des documents", "l'adresse /api/documents n'existe plus (404)");
       if (!res.ok) throw new Error("sign.com a répondu " + res.status + ".");
-      const json = await res.json();
-      const items = Array.isArray(json.items) ? json.items : [];
+      const items = C.parseDocumentList(await readJson(res, "liste des documents"));
       state.items = new Map(items.map((i) => [i.id, i]));
       state.records = items.map(C.toRecord);
       state.senders = [...new Set(state.records.map((r) => r.sender.email).filter(Boolean))];
@@ -196,12 +203,22 @@
       fillSelects();
     } catch (e) {
       state.error = e && e.message ? e.message : String(e);
+      state.formatError = e instanceof C.FormatError;
     } finally {
       state.loading = false;
       render();
     }
     // Les documents en attente sont ceux pour lesquels « qui manque ? » compte le plus.
     loadDetails(state.records.filter((r) => r.status === "pending"));
+  }
+
+  /** Lit le JSON d'une réponse ; une page HTML à la place signale un changement côté sign.com. */
+  async function readJson(res, where) {
+    try {
+      return await res.json();
+    } catch (e) {
+      throw new C.FormatError(where, "la réponse n'est pas du JSON");
+    }
   }
 
   async function loadDetails(records) {
@@ -223,10 +240,16 @@
         try {
           if (!url) throw new Error("no url");
           const res = await fetch(url, { credentials: "include", headers: { Accept: "application/json" } });
+          if (res.status === 404) throw new C.FormatError("détail d'un document", "l'adresse " + url + " n'existe plus (404)");
           if (!res.ok) throw new Error(String(res.status));
-          state.details.set(r.id, C.signeeStatusMap(C.parseDetail(await res.json())));
+          state.details.set(r.id, C.signeeStatusMap(C.parseDetail(await readJson(res, "détail d'un document"))));
         } catch (e) {
-          state.details.set(r.id, "error");
+          if (e instanceof C.FormatError) {
+            state.details.set(r.id, "format");
+            state.detailFormatError = e.message;
+          } else {
+            state.details.set(r.id, "error");
+          }
         }
         scheduleRender();
       }
@@ -297,7 +320,21 @@
     if (state.error) {
       countEl.textContent = "";
       body.replaceChildren(
-        h("div", { class: "empty error" }, state.error, h("br"), h("button", { class: "btn", onclick: () => load(true) }, "Réessayer"))
+        state.formatError
+          ? h(
+              "div",
+              { class: "empty error" },
+              h("strong", {}, "sign.com a modifié le format de ses données : l'extension ne sait plus les lire."),
+              h("br"),
+              "Il faut mettre à jour l'extension (voir ",
+              h("a", { href: ISSUES_URL, target: "_blank", rel: "noopener" }, "le dépôt du projet"),
+              ").",
+              h("br"),
+              h("small", {}, "Détail technique : " + state.error),
+              h("br"),
+              h("button", { class: "btn", onclick: () => load(true) }, "Réessayer")
+            )
+          : h("div", { class: "empty error" }, state.error, h("br"), h("button", { class: "btn", onclick: () => load(true) }, "Réessayer"))
       );
       footerInfo.replaceChildren();
       return;
@@ -318,6 +355,13 @@
         state.loadedAt ? "Liste chargée à " + state.loadedAt.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" }) : "",
         loadingDetails ? " · vérification des signatures… (" + loadingDetails + ")" : ""
       ),
+      state.detailFormatError
+        ? h(
+            "span",
+            { class: "warn", title: state.detailFormatError },
+            "⚠ sign.com a modifié le format du détail des signatures : les icônes ✓ / ⏳ ne peuvent plus s'afficher. Mettez à jour l'extension."
+          )
+        : null,
       h("span", { class: "spacer" }),
       state.view === "docs" && results.length
         ? h(

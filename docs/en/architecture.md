@@ -48,7 +48,9 @@ This file depends on neither the DOM nor `chrome.*`. It is exposed as `globalThi
 | `people(records, exclude)` | Group by person (key = normalised email) |
 | `facets(records)` | Counts by status, class and program, for the drop-down lists |
 | `toCsv(records, origin)` | CSV export (BOM, `;`, RFC 4180 escaping) |
-| `parseDetail(json)` | Normalise the two details-response formats |
+| `parseDocumentList(json)` | Checks the `/api/documents` response and returns `items`; throws a `FormatError` if the format has changed |
+| `parseDetail(json)` | Normalise the two details-response formats; throws a `FormatError` on an unknown format |
+| `FormatError` | "Unexpected sign.com format" error, shown with a dedicated message in the panel |
 | `signeeStatusMap(rows)` | `Map(normalised email → status)` |
 
 ### `src/content.js` — interface
@@ -66,7 +68,9 @@ Internal state (`state` object):
 | `items` | `Map(id → raw item)` |
 | `records` | `toRecord` result for each item |
 | `senders` | Sender emails: that's you, greyed out in the display and excluded from the People view |
-| `details` | `Map(id → Map(email → status) \| "loading" \| "error")` |
+| `details` | `Map(id → Map(email → status) \| "loading" \| "error" \| "format")` |
+| `error`, `formatError` | Error message from loading the list; `formatError` is `true` when it comes from an API change |
+| `detailFormatError` | Message shown in the footer when the signature details no longer have the expected format |
 | `query`, `status`, `classe`, `sort`, `view`, `limit` | Display settings |
 
 ### `src/background.js`
@@ -148,6 +152,13 @@ Each signer's status is in `signees[]`:
 5. **↻ Actualiser** (Refresh): clears the details cache and starts again at step 2.
 
 ## If sign.com changes
+
+The extension detects most API changes and reports them clearly instead of showing an empty list:
+
+- unreadable document list (address returns 404, response is not JSON, `items` field missing, `id`, `name`, `status` or `signees` fields missing from every document): the panel shows "sign.com a modifié le format de ses données" (sign.com changed its data format), with the technical detail and a link to the repository;
+- unreadable signature details: a warning shows in the panel footer, and the list stays usable.
+
+These checks live in `parseDocumentList()` and `parseDetail()` (`core.js`) and are tested in `tests/core.test.js`.
 
 Things to check, in order:
 

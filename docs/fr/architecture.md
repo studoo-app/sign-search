@@ -48,7 +48,9 @@ Ce fichier ne dépend ni du DOM ni de `chrome.*`. Il est exposé sous `globalThi
 | `people(records, exclude)` | Agrégation par personne (clé = email normalisé) |
 | `facets(records)` | Comptes par statut, classe et filière, pour les listes déroulantes |
 | `toCsv(records, origin)` | Export CSV (BOM, `;`, échappement RFC 4180) |
-| `parseDetail(json)` | Normalise les deux formats de réponse de détail |
+| `parseDocumentList(json)` | Vérifie la réponse de `/api/documents` et renvoie `items` ; lève une `FormatError` si le format a changé |
+| `parseDetail(json)` | Normalise les deux formats de réponse de détail ; lève une `FormatError` sur un format inconnu |
+| `FormatError` | Erreur « format de sign.com inattendu », affichée avec un message dédié dans le panneau |
 | `signeeStatusMap(rows)` | `Map(email normalisé → statut)` |
 
 ### `src/content.js` — interface
@@ -66,7 +68,9 @@ Ce fichier ne dépend ni du DOM ni de `chrome.*`. Il est exposé sous `globalThi
 | `items` | `Map(id → élément brut)` |
 | `records` | Résultat de `toRecord` pour chaque élément |
 | `senders` | Emails des expéditeurs : vous-même, grisé dans l'affichage et exclu de la vue Personnes |
-| `details` | `Map(id → Map(email → statut) \| "loading" \| "error")` |
+| `details` | `Map(id → Map(email → statut) \| "loading" \| "error" \| "format")` |
+| `error`, `formatError` | Message d'erreur du chargement de la liste ; `formatError` vaut `true` quand il vient d'un changement de l'API |
+| `detailFormatError` | Message affiché dans le pied quand le détail des signatures n'a plus le format attendu |
 | `query`, `status`, `classe`, `sort`, `view`, `limit` | Paramètres d'affichage |
 
 ### `src/background.js`
@@ -148,6 +152,13 @@ L'état de chaque signataire se trouve dans `signees[]` :
 5. **↻ Actualiser** : vide le cache de détail et recommence à l'étape 2.
 
 ## Si sign.com change
+
+L'extension détecte la plupart des changements de l'API et l'affiche clairement au lieu de montrer une liste vide :
+
+- liste des documents illisible (adresse en 404, réponse qui n'est pas du JSON, champ `items` absent, champs `id`, `name`, `status` ou `signees` absents de tous les documents) : le panneau affiche « sign.com a modifié le format de ses données », avec le détail technique et un lien vers le dépôt ;
+- détail des signatures illisible : un avertissement s'affiche dans le pied du panneau, la liste reste utilisable.
+
+Ces contrôles sont dans `parseDocumentList()` et `parseDetail()` (`core.js`), et testés dans `tests/core.test.js`.
 
 Points à vérifier, dans l'ordre :
 

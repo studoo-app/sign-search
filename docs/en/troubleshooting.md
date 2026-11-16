@@ -23,6 +23,17 @@ Your sign.com session has expired. Sign in again in the tab, then click **Réess
 
 sign.com is having a temporary problem. Wait a moment, then click **Réessayer** (Retry). If the error persists while the site itself works, sign.com may have changed how it works internally: see [Architecture → If sign.com changes](architecture.md#if-signcom-changes).
 
+## "sign.com a modifié le format de ses données : l'extension ne sait plus les lire"
+
+*(sign.com changed its data format: the extension can no longer read it.)*
+
+sign.com changed how it works internally (its API) and the extension no longer recognises its responses. Retrying won't help: a new version of the extension is needed.
+
+1. Check the [project repository](https://github.com/studoo-app/sign-search/releases) for a newer version, and install it (see [Installation → Update](installation.md#update)).
+2. Otherwise, open an issue on the [repository](https://github.com/studoo-app/sign-search/issues), copying the "Détail technique" (technical detail) line shown in the panel.
+
+If the warning "⚠ sign.com a modifié le format du détail des signatures" (sign.com changed the format of the signature details) shows at the bottom of the panel, search still works but the ✓ / ⏳ icons no longer appear. The steps are the same.
+
 ## The search doesn't find a document I can see in sign.com
 
 - The panel keeps the list **loaded when it opened**. Click **↻ Actualiser** (Refresh) to include recent documents.

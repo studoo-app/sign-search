@@ -19,6 +19,15 @@ Votre session sign.com a expiré. Reconnectez-vous dans l'onglet, puis cliquez s
 
 sign.com rencontre un problème passager. Attendez un peu, puis cliquez sur **Réessayer**. Si l'erreur persiste alors que le site lui-même fonctionne, sign.com a peut-être changé son fonctionnement interne : voir [Architecture → Si sign.com change](architecture.md#si-signcom-change).
 
+## « sign.com a modifié le format de ses données : l'extension ne sait plus les lire »
+
+sign.com a changé son fonctionnement interne (son API) et l'extension ne reconnaît plus ses réponses. Réessayer n'y changera rien : il faut une nouvelle version de l'extension.
+
+1. Vérifiez sur le [dépôt du projet](https://github.com/studoo-app/sign-search/releases) si une version plus récente existe, et installez-la (voir [Installation → Mettre à jour](installation.md#mettre-à-jour)).
+2. Sinon, ouvrez un ticket sur le [dépôt](https://github.com/studoo-app/sign-search/issues) en recopiant la ligne « Détail technique » affichée dans le panneau.
+
+Si l'avertissement « ⚠ sign.com a modifié le format du détail des signatures » apparaît en bas du panneau, la recherche fonctionne toujours, mais les icônes ✓ / ⏳ ne s'affichent plus. La démarche est la même.
+
 ## La recherche ne trouve pas un document que je vois dans sign.com
 
 - Le panneau garde la liste **chargée à son ouverture**. Cliquez sur **↻ Actualiser** pour inclure les documents récents.

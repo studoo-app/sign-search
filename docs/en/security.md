@@ -14,7 +14,7 @@ Documents managed in sign.com contain personal data: names and emails of student
 
 ## What it never does
 
-- **Nothing is sent to any other site.** Every request goes to `sign.com` and only there. The only other address in the code is the "Studoo Labs" link in the panel footer (`https://github.com/studoo-app`). It is a plain link that only opens if you click it, and it carries no data.
+- **Nothing is sent to any other site.** Every request goes to `sign.com` and only there. The only other addresses in the code are two links: "Studoo Labs" in the panel footer (`https://github.com/studoo-app`), and the repository link (`https://github.com/studoo-app/sign-search/issues`) shown only when sign.com has changed its data format. They are plain links that only open if you click them, and they carry no data.
 - **No storage**: no `chrome.storage`, `localStorage`, IndexedDB or cookie. Closing or reloading the tab erases everything.
 - **No writes** to sign.com: it doesn't sign, send, remind, cancel or delete anything. It only uses `GET` requests.
 - **No access to credentials**: it reads neither passwords nor tokens. The browser itself attaches the session cookies to requests to sign.com.
@@ -53,4 +53,4 @@ grep -rnoE "https?://[^\"' )]+" src/ manifest.json
 grep -rn "fetch(" src/
 ```
 
-Expected result: `sign.com`, the `github.com/studoo-app` link in the panel footer, and `fetch` calls to `/api/…` (same origin) or to the extension's CSS.
+Expected result: `sign.com`, the `github.com/studoo-app` (panel footer) and `github.com/studoo-app/sign-search/issues` (format-change message) links, and `fetch` calls to `/api/…` (same origin) or to the extension's CSS.

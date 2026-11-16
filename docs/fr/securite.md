@@ -14,7 +14,7 @@ Les documents gérés dans sign.com contiennent des données personnelles : noms
 
 ## Ce qu'elle ne fait jamais
 
-- **Aucun envoi vers un autre site.** Toutes les requêtes partent vers `sign.com` et seulement vers lui. La seule autre adresse du code est le lien « Studoo Labs » du pied du panneau (`https://github.com/studoo-app`). C'est un simple lien, qui ne s'ouvre que si vous cliquez dessus, et il ne transmet aucune donnée.
+- **Aucun envoi vers un autre site.** Toutes les requêtes partent vers `sign.com` et seulement vers lui. Les seules autres adresses du code sont deux liens : « Studoo Labs » dans le pied du panneau (`https://github.com/studoo-app`), et le lien vers le dépôt (`https://github.com/studoo-app/sign-search/issues`) affiché uniquement quand sign.com a changé le format de ses données. Ce sont de simples liens, qui ne s'ouvrent que si vous cliquez dessus, et ils ne transmettent aucune donnée.
 - **Aucun stockage** : pas de `chrome.storage`, `localStorage`, IndexedDB ni cookie. Fermer ou recharger l'onglet efface tout.
 - **Aucune écriture** dans sign.com : elle ne signe, n'envoie, ne relance, n'annule et ne supprime rien. Elle n'utilise que des requêtes `GET`.
 - **Pas d'accès aux identifiants** : elle ne lit ni mot de passe ni jeton. Le navigateur joint lui-même les cookies de session aux requêtes vers sign.com.
@@ -53,4 +53,4 @@ grep -rnoE "https?://[^\"' )]+" src/ manifest.json
 grep -rn "fetch(" src/
 ```
 
-Le résultat attendu : `sign.com`, le lien `github.com/studoo-app` du pied du panneau, et des `fetch` vers `/api/…` (même origine) ou vers le CSS de l'extension.
+Le résultat attendu : `sign.com`, les liens `github.com/studoo-app` (pied du panneau) et `github.com/studoo-app/sign-search/issues` (message de changement de format), et des `fetch` vers `/api/…` (même origine) ou vers le CSS de l'extension.

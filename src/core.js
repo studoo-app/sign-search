@@ -254,6 +254,49 @@
     return action && action.status ? action.status : "—";
   }
 
+  // ---------- contrôle du format des réponses de sign.com ----------
+
+  /**
+   * Levée quand une réponse de sign.com n'a plus la forme attendue
+   * (API modifiée) : l'extension doit alors être mise à jour.
+   */
+  class FormatError extends Error {
+    constructor(where, detail) {
+      super("Format inattendu (" + where + ") : " + detail + ".");
+      this.name = "FormatError";
+      this.where = where;
+      this.detail = detail;
+    }
+  }
+
+  function isObject(v) {
+    return v !== null && typeof v === "object" && !Array.isArray(v);
+  }
+
+  /** Champs dont l'extension a besoin dans chaque élément de /api/documents. */
+  const DOCUMENT_FIELDS = ["id", "name", "status", "signees"];
+
+  /**
+   * Vérifie la réponse de /api/documents et renvoie la liste des éléments.
+   * Lève une FormatError si la forme ne correspond plus.
+   */
+  function parseDocumentList(json) {
+    const where = "liste des documents";
+    if (!isObject(json)) throw new FormatError(where, "la réponse n'est pas un objet JSON");
+    if (!Array.isArray(json.items)) throw new FormatError(where, "le champ « items » est absent ou n'est pas une liste");
+    const items = json.items;
+    if (!items.every(isObject)) throw new FormatError(where, "la liste contient des éléments qui ne sont pas des documents");
+    if (items.some((i) => i.id == null)) throw new FormatError(where, "des documents n'ont pas d'« id »");
+    if (items.some((i) => i.signees != null && !Array.isArray(i.signees))) {
+      throw new FormatError(where, "« signees » n'est plus une liste");
+    }
+    // Un champ absent d'un document isolé est toléré ; absent de tous, c'est un changement de format.
+    for (const f of DOCUMENT_FIELDS) {
+      if (items.length && !items.some((i) => f in i)) throw new FormatError(where, "les documents n'ont plus de champ « " + f + " »");
+    }
+    return items;
+  }
+
   /** URL de l'API de détail (état de chaque signataire). */
   function detailApiUrl(item) {
     if (item.itemType === "signRequest" && item.publicSignRequestId) {
@@ -268,9 +311,19 @@
    * [{ email, name, status, label, done, date }].
    */
   function parseDetail(json) {
-    if (!json || typeof json !== "object") return [];
+    const where = "détail d'un document";
+    if (!isObject(json)) throw new FormatError(where, "la réponse n'est pas un objet JSON");
+    const hasActions = Array.isArray(json.actions);
+    const hasSignees = Array.isArray(json.signees);
+    if (!hasActions && !hasSignees) throw new FormatError(where, "ni « actions » ni « signees » ne sont présents");
+    const source = hasActions && json.actions.length ? json.actions : hasSignees ? json.signees : [];
+    if (!source.every(isObject)) throw new FormatError(where, "la liste des signataires contient des éléments invalides");
+    const emailKey = source === json.actions ? "assigneeEmail" : "email";
+    if (source.length && !source.some((x) => emailKey in x)) {
+      throw new FormatError(where, "les signataires n'ont plus de champ « " + emailKey + " »");
+    }
     let rows = [];
-    if (Array.isArray(json.actions) && json.actions.length) {
+    if (hasActions && json.actions.length) {
       rows = json.actions.map((a) => ({
         email: a.assigneeEmail || "",
         name: fullName({ firstName: a.assigneeFirstName, lastName: a.assigneeLastName }),
@@ -278,7 +331,7 @@
         completedAt: a.completedAt,
         order: a.order,
       }));
-    } else if (Array.isArray(json.signees)) {
+    } else if (hasSignees) {
       rows = json.signees.map((s) => ({
         email: s.email || "",
         name: fullName(s),
@@ -309,6 +362,8 @@
   }
 
   const api = {
+    FormatError,
+    parseDocumentList,
     detailApiUrl,
     parseDetail,
     signeeStatusMap,

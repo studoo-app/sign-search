@@ -169,7 +169,58 @@ test("parseDetail : format /api/sign-requests/:id (signees)", () => {
   const m = C.signeeStatusMap(rows);
   assert.equal(m.get("a@x.test").status, "pending");
   assert.equal(m.get("e@x.test").done, true);
-  assert.deepEqual(C.parseDetail(null), []);
+});
+
+test("parseDocumentList : accepte le format actuel", () => {
+  assert.equal(C.parseDocumentList({ items: raw }), raw);
+  assert.deepEqual(C.parseDocumentList({ items: [] }), []);
+});
+
+test("parseDocumentList : signale un changement de format", () => {
+  const cas = [
+    null,
+    [],
+    "<html>",
+    {},
+    { documents: raw },
+    { items: "x" },
+    { items: [null] },
+    { items: [{ ...raw[0], id: undefined }] },
+    { items: [{ ...raw[0], signees: "x" }] },
+    { items: raw.map(({ name, ...rest }) => ({ ...rest, title: name })) },
+    { items: raw.map(({ status, ...rest }) => ({ ...rest, state: status })) },
+    { items: raw.map(({ signees, ...rest }) => ({ ...rest, recipients: signees })) },
+  ];
+  for (const json of cas) {
+    assert.throws(() => C.parseDocumentList(json), C.FormatError, JSON.stringify(json));
+  }
+  // Un champ absent d'un seul document reste toléré.
+  const { name, ...sansNom } = raw[0];
+  assert.equal(C.parseDocumentList({ items: [sansNom, raw[1]] }).length, 2);
+});
+
+test("parseDetail : signale un changement de format", () => {
+  const cas = [
+    null,
+    "<html>",
+    {},
+    { recipients: [] },
+    { actions: [null] },
+    { actions: [{ email: "a@x.test", status: "Pending" }] },
+    { signees: [{ mail: "a@x.test", status: "Pending" }] },
+  ];
+  for (const json of cas) {
+    assert.throws(() => C.parseDetail(json), C.FormatError, JSON.stringify(json));
+  }
+  assert.deepEqual(C.parseDetail({ actions: [] }), []);
+  assert.deepEqual(C.parseDetail({ signees: [] }), []);
+});
+
+test("FormatError : message lisible", () => {
+  const e = new C.FormatError("liste des documents", "le champ « items » est absent");
+  assert.ok(e instanceof Error);
+  assert.equal(e.name, "FormatError");
+  assert.equal(e.message, "Format inattendu (liste des documents) : le champ « items » est absent.");
 });
 
 test("exemples documentés dans docs/fr/nommage.md et docs/en/file-naming.md", () => {
