@@ -47,7 +47,7 @@ Première version.
 - Documentation dans `docs/` : installation, guide d'utilisation, dépannage, architecture, développement, confidentialité.
 - Publication automatique : un workflow GitHub Actions construit le zip et le publie dans une Release.
 
-[Non publié]: https://github.com/bfoujols/sign-search/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/bfoujols/sign-search/compare/v0.1.1...v0.2.0
-[0.1.1]: https://github.com/bfoujols/sign-search/compare/v0.1.0...v0.1.1
-[0.1.0]: https://github.com/bfoujols/sign-search/releases/tag/v0.1.0
+[Non publié]: https://github.com/studoo-app/sign-search/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/studoo-app/sign-search/compare/v0.1.1...v0.2.0
+[0.1.1]: https://github.com/studoo-app/sign-search/compare/v0.1.0...v0.1.1
+[0.1.0]: https://github.com/studoo-app/sign-search/releases/tag/v0.1.0

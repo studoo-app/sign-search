@@ -13,7 +13,7 @@ L'extension n'est pas publiée sur le Chrome Web Store. On l'installe en **mode 
 
 **Méthode recommandée** : téléchargez l'archive de la dernière version, puis décompressez-la.
 
-> https://github.com/bfoujols/sign-search/releases/latest/download/sign-search.zip
+> https://github.com/studoo-app/sign-search/releases/latest/download/sign-search.zip
 
 Cette archive est construite automatiquement par GitHub Actions à chaque nouvelle version. Elle contient uniquement l'extension (`manifest.json`, `src/`, `icons/`), sans les tests ni la documentation. Les versions précédentes se trouvent sur la page **Releases** du dépôt.
 
@@ -21,7 +21,7 @@ Cette archive est construite automatiquement par GitHub Actions à chaque nouvel
 
 Autres possibilités, pour développer :
 
-- `git clone https://github.com/bfoujols/sign-search.git` ;
+- `git clone https://github.com/studoo-app/sign-search.git` ;
 - **Code → Download ZIP** sur la page du dépôt.
 
 Placez le dossier à un endroit **stable**, par exemple `Documents/Extensions/sign-search`. Le navigateur charge l'extension depuis ce dossier à chaque démarrage : il ne faut pas le supprimer ni le déplacer.

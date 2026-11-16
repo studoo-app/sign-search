@@ -4,7 +4,7 @@ Chrome / Brave extension that adds a search panel to [sign.com](https://sign.com
 
 ## Installation
 
-1. Download **[sign-search.zip](https://github.com/bfoujols/sign-search/releases/latest/download/sign-search.zip)** (latest version) and unzip it into a folder you won't move.
+1. Download **[sign-search.zip](https://github.com/studoo-app/sign-search/releases/latest/download/sign-search.zip)** (latest version) and unzip it into a folder you won't move.
 2. Open `brave://extensions` (or `chrome://extensions`) and turn on **Developer mode**.
 3. Click **Load unpacked** and select the folder that contains `manifest.json`.
 4. Reload sign.com. Open the panel with the **🔎 Rechercher** button, or with **Alt + Shift + S**.

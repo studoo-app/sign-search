@@ -72,7 +72,7 @@ jobs:
           cat >> notes.md <<'EOF'
 
           ---
-          **Installation** : téléchargez `sign-search.zip`, décompressez-le, puis dans `brave://extensions` (ou `chrome://extensions`) activez le Mode développeur et cliquez sur « Charger l'extension non empaquetée ». Détails : [docs/fr/installation.md](https://github.com/bfoujols/sign-search/blob/main/docs/fr/installation.md)
+          **Installation** : téléchargez `sign-search.zip`, décompressez-le, puis dans `brave://extensions` (ou `chrome://extensions`) activez le Mode développeur et cliquez sur « Charger l'extension non empaquetée ». Détails : [docs/fr/installation.md](https://github.com/studoo-app/sign-search/blob/main/docs/fr/installation.md)
           EOF
           cat notes.md
           if gh release view "$TAG" >/dev/null 2>&1; then
