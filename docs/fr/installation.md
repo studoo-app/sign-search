@@ -63,9 +63,31 @@ Ouvrez la page des extensions de votre navigateur, par exemple `chrome://extensi
 
 ## Mettre à jour
 
-1. Téléchargez de nouveau `sign-search.zip` et remplacez le contenu du dossier par celui de l'archive. Gardez le **même dossier**, pour que le navigateur retrouve l'extension. Avec Git, faites simplement `git pull`.
-2. Dans la page des extensions, cliquez sur l'icône **↻** de la carte « Sign Search Convention ».
-3. Rechargez l'onglet sign.com.
+Installée en mode développeur, l'extension **ne se met pas à jour toute seule** : il faut remplacer ses fichiers à chaque nouvelle version. Cela prend une minute, et vous ne perdez rien, car l'extension n'enregistre aucune donnée. Votre raccourci clavier est conservé.
+
+### Savoir si une nouvelle version existe
+
+1. **Votre version** : elle est affichée en bas du panneau (« Sign Search Convention v0.2.2 ») et sur la carte de l'extension, dans la page des extensions.
+2. **La dernière version publiée** : elle est sur la page [Releases](https://github.com/studoo-app/sign-search/releases/latest) du dépôt, avec la liste des nouveautés. L'historique complet est dans le [CHANGELOG](../../CHANGELOG.md).
+3. **Être prévenu automatiquement** (facultatif) : avec un compte GitHub, cliquez sur **Watch → Custom → Releases** en haut de la [page du dépôt](https://github.com/studoo-app/sign-search). GitHub vous envoie alors un e-mail à chaque nouvelle version.
+
+### Installer la nouvelle version
+
+1. Téléchargez la dernière archive : [sign-search.zip](https://github.com/studoo-app/sign-search/releases/latest/download/sign-search.zip).
+2. Décompressez-la.
+3. Ouvrez le dossier où l'extension est installée (celui choisi à l'installation, par exemple `Documents/Extensions/sign-search`). **Supprimez son contenu**, puis copiez-y le contenu de l'archive : `manifest.json`, `LICENSE`, `src/` et `icons/`. Supprimer d'abord évite de garder d'anciens fichiers devenus inutiles.
+4. Ouvrez la page des extensions (`chrome://extensions`, `brave://extensions`… voir le [tableau des navigateurs](#navigateurs-compatibles)) et cliquez sur l'icône **↻** (Actualiser) de la carte « Sign Search Convention ».
+5. Rechargez les onglets sign.com déjà ouverts : l'ancienne version y reste active tant qu'ils ne sont pas rechargés.
+6. Vérifiez le numéro de version en bas du panneau.
+
+**Avec Git** : dans le dossier de l'extension, lancez `git pull`, puis faites les étapes 4 à 6.
+
+### Pièges à éviter
+
+- **Ne chargez pas la nouvelle version comme une deuxième extension.** Si vous décompressez l'archive ailleurs et cliquez sur « Charger l'extension non empaquetée », deux copies tournent en même temps : deux boutons 🔎 apparaissent et le raccourci n'en ouvre qu'une. Dans ce cas, supprimez l'ancienne carte dans la page des extensions.
+- **Ne supprimez pas le dossier lui-même**, seulement son contenu. Sinon le navigateur ne peut plus charger l'extension et affiche une erreur sur sa carte.
+- **Un sous-dossier en trop** : en décompressant, macOS et Windows (« Extraire tout ») créent un dossier `sign-search/`. Copiez les fichiers **qu'il contient**, et non le dossier lui-même, pour que `manifest.json` soit directement dans le dossier de l'extension.
+- **La carte affiche « Erreurs » après ↻** : `manifest.json` n'est probablement pas au bon niveau. Vérifiez le point précédent, puis cliquez de nouveau sur ↻.
 
 ## Changer le raccourci clavier
 

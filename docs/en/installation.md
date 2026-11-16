@@ -63,9 +63,31 @@ Open your browser's extensions page, for example `chrome://extensions` or `brave
 
 ## Update
 
-1. Download `sign-search.zip` again and replace the folder's contents with the archive's. Keep the **same folder**, so the browser finds the extension. With Git, simply run `git pull`.
-2. On the extensions page, click the **↻** icon on the "Sign Search Convention" card.
-3. Reload the sign.com tab.
+Installed in developer mode, the extension **does not update itself**: you replace its files for each new version. It takes a minute, and you lose nothing, since the extension stores no data. Your keyboard shortcut is kept.
+
+### Find out whether a new version exists
+
+1. **Your version**: it is shown at the bottom of the panel ("Sign Search Convention v0.2.2") and on the extension's card on the extensions page.
+2. **The latest published version**: it is on the repository's [Releases](https://github.com/studoo-app/sign-search/releases/latest) page, with the list of changes. The full history is in the [CHANGELOG](../../CHANGELOG.md) (in French).
+3. **Get notified automatically** (optional): with a GitHub account, click **Watch → Custom → Releases** at the top of the [repository page](https://github.com/studoo-app/sign-search). GitHub then emails you for every new version.
+
+### Install the new version
+
+1. Download the latest archive: [sign-search.zip](https://github.com/studoo-app/sign-search/releases/latest/download/sign-search.zip).
+2. Unzip it.
+3. Open the folder where the extension is installed (the one chosen during installation, for example `Documents/Extensions/sign-search`). **Delete its contents**, then copy the archive's contents into it: `manifest.json`, `LICENSE`, `src/` and `icons/`. Deleting first avoids keeping old files that are no longer used.
+4. Open the extensions page (`chrome://extensions`, `brave://extensions`… see the [browser table](#compatible-browsers)) and click the **↻** (Reload) icon on the "Sign Search Convention" card.
+5. Reload any sign.com tabs that are already open: the old version stays active in them until they are reloaded.
+6. Check the version number at the bottom of the panel.
+
+**With Git**: in the extension's folder, run `git pull`, then follow steps 4 to 6.
+
+### Pitfalls
+
+- **Don't load the new version as a second extension.** If you unzip the archive somewhere else and click "Load unpacked", two copies run at the same time: two 🔎 buttons appear and the shortcut only opens one of them. If that happens, remove the old card on the extensions page.
+- **Don't delete the folder itself**, only its contents. Otherwise the browser can no longer load the extension and shows an error on its card.
+- **An extra subfolder**: when unzipping, macOS and Windows ("Extract All") create a `sign-search/` folder. Copy the files **it contains**, not the folder itself, so that `manifest.json` sits directly in the extension's folder.
+- **The card shows "Errors" after ↻**: `manifest.json` is probably not at the right level. Check the previous point, then click ↻ again.
 
 ## Change the keyboard shortcut
 
