@@ -67,7 +67,7 @@ Installed in developer mode, the extension **does not update itself**: you repla
 
 ### Find out whether a new version exists
 
-1. **Your version**: it is shown at the bottom of the panel ("Sign Search Convention v0.2.2") and on the extension's card on the extensions page.
+1. **Your version**: it is shown at the bottom of the panel ("Sign Search Convention v0.3.0") and on the extension's card on the extensions page.
 2. **The latest published version**: it is on the repository's [Releases](https://github.com/studoo-app/sign-search/releases/latest) page, with the list of changes. The full history is in the [CHANGELOG](../../CHANGELOG.md) (in French).
 3. **Get notified automatically** (optional): with a GitHub account, click **Watch → Custom → Releases** at the top of the [repository page](https://github.com/studoo-app/sign-search). GitHub then emails you for every new version.
 

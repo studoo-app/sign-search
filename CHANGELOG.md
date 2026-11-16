@@ -9,6 +9,8 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), et les 
 
 ## [Non publié]
 
+## [0.3.0] - 2026-11-16
+
 ### Modifié
 
 - Documents **À signer** : votre propre ligne (le compte connecté, qui doit signer) est surlignée sur fond orange, comme le badge « signatures manquantes ». sign.com ne fournit pas l'adresse du compte connecté : l'extension la déduit des documents à signer.
@@ -65,7 +67,8 @@ Première version.
 - Documentation dans `docs/` : installation, guide d'utilisation, dépannage, architecture, développement, confidentialité.
 - Publication automatique : un workflow GitHub Actions construit le zip et le publie dans une Release.
 
-[Non publié]: https://github.com/studoo-app/sign-search/compare/v0.2.2...HEAD
+[Non publié]: https://github.com/studoo-app/sign-search/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/studoo-app/sign-search/compare/v0.2.2...v0.3.0
 [0.2.2]: https://github.com/studoo-app/sign-search/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/studoo-app/sign-search/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/studoo-app/sign-search/compare/v0.1.1...v0.2.0

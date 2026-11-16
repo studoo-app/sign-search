@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Sign Search Convention",
   "short_name": "Sign Search",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Recherche rapide dans vos documents sign.com : noms complets des signataires, filtres par statut et par classe, export CSV.",
   "icons": {
     "16": "icons/icon16.png",

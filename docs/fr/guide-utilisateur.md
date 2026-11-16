@@ -28,7 +28,7 @@ Si vous cliquez sur l'icône alors que vous n'êtes pas sur sign.com, l'extensio
 │ ...                                                          │
 ├──────────────────────────────────────────────────────────────┤
 │ Liste chargée à 14:32        [Vérifier qui a signé (…)]      │
-│        Sign Search Convention v0.2.2 · Créé par Studoo Labs  │
+│        Sign Search Convention v0.3.0 · Créé par Studoo Labs  │
 └──────────────────────────────────────────────────────────────┘
 ```
 
