@@ -171,3 +171,32 @@ test("parseDetail : format /api/sign-requests/:id (signees)", () => {
   assert.equal(m.get("e@x.test").done, true);
   assert.deepEqual(C.parseDetail(null), []);
 });
+
+test("exemples documentés dans docs/nommage.md", () => {
+  const cas = {
+    "MCO1 DUPONT Jean - Convention ACME.pdf": "MCO1",
+    "MCO1_DUPONT.pdf": "MCO1",
+    "MCO1-DUPONT.pdf": "MCO1",
+    "MCO 1 DUPONT.pdf": "MCO1",
+    "MCO-1 DUPONT.pdf": "MCO1",
+    "SIO - 2 X": "SIO2",
+    "MCO1DUPONT": "MCO1",
+    "XYZ1 Dupont": "XYZ1",
+    "MCO - DUPONT.pdf": "MCO",
+    "MCO_DUPONT": "MCO",
+    "MCO.DUPONT": "MCO",
+    "mco - dupont": "MCO",
+    "Convention MCO1 DUPONT": "",
+    "Mco1 DUPONT": "",
+    "mco1 dupont": "",
+    "MCO12 DUPONT": "",
+    "1MCO DUPONT": "",
+    "S1 DUPONT": "",
+    "ABCDEFG1 X": "",
+    "XYZ - Dupont": "",
+    // pièges documentés
+    "DUPONT2 - Convention.pdf": "DUPONT2",
+    "MCO1A DUPONT": "MCO1",
+  };
+  for (const [nom, attendu] of Object.entries(cas)) assert.equal(C.parseClasse(nom), attendu, nom);
+});

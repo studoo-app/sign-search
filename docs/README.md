@@ -8,6 +8,7 @@ Sign Search Convention est une extension pour Chrome et Brave. Elle ajoute à [s
 |---|---|---|
 | [Installation](installation.md) | Utilisateur | Installer, mettre à jour et désinstaller dans Chrome ou Brave |
 | [Guide d'utilisation](guide-utilisateur.md) | Utilisateur | Rechercher, filtrer, vue Personnes, état des signatures, export CSV |
+| [Nommage des fichiers](nommage.md) | Utilisateur | Le modèle de nom de fichier pour que la filière et la classe soient reconnues |
 | [Dépannage et FAQ](depannage.md) | Utilisateur | Problèmes courants et leurs solutions |
 | [Architecture](architecture.md) | Développeur | Fonctionnement interne, API sign.com utilisées, flux de données |
 | [Développement](developpement.md) | Développeur | Organisation du code, tests, conventions, publier une version |

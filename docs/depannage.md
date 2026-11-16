@@ -26,7 +26,7 @@ sign.com rencontre un problème passager. Attendez un peu, puis cliquez sur **R�
 
 ## Un document n'a pas de classe
 
-La classe vient du **début du nom de fichier** (voir le [guide](guide-utilisateur.md#par-classe-ou-filière)). Les noms qui commencent par « Convention… », par le nom de l'élève, ou par un sigle inconnu sans numéro ne sont pas classés.
+La classe vient du **début du nom de fichier** (voir [Nommage des fichiers](nommage.md)). Les noms qui commencent par « Convention… », par le nom de l'élève, ou par un sigle inconnu sans numéro ne sont pas classés.
 
 Solutions :
 

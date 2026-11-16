@@ -89,7 +89,7 @@ La liste déroulante comporte deux groupes :
 
 Un document sans sigle au début de son nom n'a pas de classe. Il reste trouvable par la recherche texte.
 
-**Astuce** : pour qu'un document soit toujours classé, faites commencer son nom par le sigle de la classe, par exemple `MCO1 NOM - Convention.pdf`.
+**Pour qu'un document soit toujours classé**, faites commencer son nom par le sigle de la classe, par exemple `MCO1 NOM Prénom - Convention.pdf`. Toutes les règles et les pièges sont détaillés dans **[Nommage des fichiers](nommage.md)**.
 
 ### Tri
 
