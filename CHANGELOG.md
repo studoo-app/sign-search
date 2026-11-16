@@ -9,9 +9,11 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), et les 
 
 ## [Non publié]
 
+## [0.2.1] - 2026-11-16
+
 ### Ajouté
 
-- Licence open source : [EUPL-1.2](LICENSE). Le texte anglais est dans `LICENSE`, à la racine ; le texte français est dans [docs/fr/LICENCE.md](docs/fr/LICENCE.md). Le fichier `LICENSE` est aussi inclus dans le zip de chaque version.
+- Licence open source : [EUPL-1.2](https://github.com/studoo-app/sign-search/blob/main/LICENSE). Le texte anglais est dans `LICENSE`, à la racine ; le texte français est dans [docs/fr/LICENCE.md](https://github.com/studoo-app/sign-search/blob/main/docs/fr/LICENCE.md). Le fichier `LICENSE` est aussi inclus dans le zip de chaque version.
 - Message d'erreur explicite quand sign.com modifie le format de son API : « sign.com a modifié le format de ses données », avec le détail technique et un lien vers le dépôt. Auparavant, un changement de format pouvait donner une liste vide sans aucune erreur.
 - Avertissement dans le pied du panneau quand le détail des signatures n'a plus le format attendu.
 
@@ -53,7 +55,8 @@ Première version.
 - Documentation dans `docs/` : installation, guide d'utilisation, dépannage, architecture, développement, confidentialité.
 - Publication automatique : un workflow GitHub Actions construit le zip et le publie dans une Release.
 
-[Non publié]: https://github.com/studoo-app/sign-search/compare/v0.2.0...HEAD
+[Non publié]: https://github.com/studoo-app/sign-search/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/studoo-app/sign-search/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/studoo-app/sign-search/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/studoo-app/sign-search/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/studoo-app/sign-search/releases/tag/v0.1.0
