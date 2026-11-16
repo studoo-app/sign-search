@@ -172,8 +172,29 @@ test("parseDetail : format /api/sign-requests/:id (signees)", () => {
 });
 
 test("parseDocumentList : accepte le format actuel", () => {
-  assert.equal(C.parseDocumentList({ items: raw }), raw);
+  assert.deepEqual(C.parseDocumentList({ items: raw }), raw);
   assert.deepEqual(C.parseDocumentList({ items: [] }), []);
+  assert.deepEqual(C.parseDocumentList({ items: [], actionRequiredItems: [] }), []);
+});
+
+test("parseDocumentList : inclut les documents en attente (actionRequiredItems)", () => {
+  const signe = { id: "d1", itemType: "document", name: "SIO1 A.pdf", status: "Sealed", signees: [], updatedAt: "2026-11-01" };
+  const attente = { id: "p1", itemType: "signRequest", publicSignRequestId: "pub1", name: "SIO1 B.pdf", status: "Pending", actionType: "SignRequest", actorRole: "Signer", signees: [], updatedAt: "2026-11-02" };
+  const liste = C.parseDocumentList({ items: [signe], actionRequiredItems: [attente] });
+  assert.deepEqual(liste.map((i) => i.id), ["d1", "p1"]);
+  // « Sign document » sur sign.com → statut « À signer ».
+  const recs = liste.map(C.toRecord);
+  assert.deepEqual(recs.map((r) => r.status), ["sealed", "to_sign"]);
+  assert.equal(recs[1].statusLabel, "À signer");
+  assert.ok(C.isAwaiting("to_sign") && C.isAwaiting("pending") && !C.isAwaiting("sealed"));
+  // Une demande en attente des autres (sans actionType) reste « En attente ».
+  assert.equal(C.toRecord({ ...attente, actionType: undefined }).status, "pending");
+  // Un même document présent dans les deux listes n'apparaît qu'une fois (version la plus récente).
+  const ancien = { ...attente, status: "Sealed", updatedAt: "2026-11-01" };
+  const dedup = C.parseDocumentList({ items: [ancien], actionRequiredItems: [attente] });
+  assert.equal(dedup.length, 1);
+  assert.equal(dedup[0].status, "Pending");
+  assert.throws(() => C.parseDocumentList({ items: [], actionRequiredItems: {} }), C.FormatError);
 });
 
 test("parseDocumentList : signale un changement de format", () => {

@@ -30,7 +30,7 @@ The first time it opens, the panel loads the list of all your documents. This ta
 │ ...                                                          │
 ├──────────────────────────────────────────────────────────────┤
 │ Liste chargée à 14:32        [Vérifier qui a signé (…)]      │
-│        Sign Search Convention v0.2.1 · Créé par Studoo Labs  │
+│        Sign Search Convention v0.2.2 · Créé par Studoo Labs  │
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -40,6 +40,7 @@ The first time it opens, the panel loads the list of all your documents. This ta
 | Statut / Classe / Tri | Status / Class / Sort |
 | Documents / Personnes | Documents / People |
 | En attente | Pending |
+| À signer | Awaiting your signature (« Sign document » on sign.com) |
 | signature manquante | missing signature |
 | Liste chargée à | List loaded at |
 | Vérifier qui a signé | Check who has signed |
@@ -126,7 +127,7 @@ A document without a code at the start of its name has no class. It can still be
 
 The main sign.com list doesn't say where each person stands. So the extension fetches the **details** of each document:
 
-- **Automatically** for every **Pending** document, as soon as the panel opens.
+- **Automatically** for every **Pending** (En attente) and **À signer** document, as soon as the panel opens.
 - **On demand** for the others: the **"Vérifier qui a signé (résultats affichés)"** (Check who has signed, displayed results) button at the bottom of the panel. It covers the first 300 displayed results.
 
 While checking, the panel footer shows "vérification des signatures… (N)" (checking signatures).

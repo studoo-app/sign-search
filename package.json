@@ -1,6 +1,6 @@
 {
   "name": "sign-search",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "description": "Extension Chrome/Brave de recherche dans les documents sign.com",
   "license": "EUPL-1.2",

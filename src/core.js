@@ -8,6 +8,7 @@
   const STATUS_LABELS = {
     sealed: "Signé",
     pending: "En attente",
+    to_sign: "À signer",
     expired: "Expiré",
     canceled: "Annulé",
     cancelled: "Annulé",
@@ -33,6 +34,21 @@
 
   function statusLabel(status) {
     return STATUS_LABELS[statusKey(status)] || status || "—";
+  }
+
+  /**
+   * Statut d'un élément de /api/documents. Les demandes qui attendent votre propre
+   * signature (liste « actionRequiredItems », affichées « Sign document » sur sign.com)
+   * portent un « actionType » : elles deviennent « to_sign » (« À signer »).
+   */
+  function itemStatusKey(item) {
+    const k = statusKey(item.status);
+    return k === "pending" && item.actionType ? "to_sign" : k;
+  }
+
+  /** Document pas encore entièrement signé (en attente d'autrui ou de vous). */
+  function isAwaiting(status) {
+    return status === "pending" || status === "to_sign";
   }
 
   /**
@@ -100,8 +116,8 @@
       name: item.name || "(sans nom)",
       classe: parseClasse(item.name),
       filiere: filiereOf(parseClasse(item.name)),
-      status: statusKey(item.status),
-      statusLabel: statusLabel(item.status),
+      status: itemStatusKey(item),
+      statusLabel: statusLabel(itemStatusKey(item)),
       createdAt: item.createdAt || "",
       updatedAt: item.updatedAt || item.createdAt || "",
       url: documentUrl(item),
@@ -177,7 +193,7 @@
         }
         if (!p.name && s.name) p.name = s.name;
         p.count++;
-        if (r.status === "pending") p.pending++;
+        if (isAwaiting(r.status)) p.pending++;
         if (r.classe) p.classes.add(r.classe);
       }
     }
@@ -243,6 +259,7 @@
       completed: "A signé",
       signed: "A signé",
       pending: "En attente",
+    to_sign: "À signer",
       waiting: "En attente",
       declined: "A refusé",
       canceled: "Annulé",
@@ -278,13 +295,26 @@
 
   /**
    * Vérifie la réponse de /api/documents et renvoie la liste des éléments.
+   * sign.com sépare les documents en deux listes : « items » (signés, brouillons…)
+   * et « actionRequiredItems » (demandes en attente de signature). On fusionne les deux,
+   * sans doublon (même itemType + id), en gardant la version la plus récente.
    * Lève une FormatError si la forme ne correspond plus.
    */
   function parseDocumentList(json) {
     const where = "liste des documents";
     if (!isObject(json)) throw new FormatError(where, "la réponse n'est pas un objet JSON");
     if (!Array.isArray(json.items)) throw new FormatError(where, "le champ « items » est absent ou n'est pas une liste");
-    const items = json.items;
+    if (json.actionRequiredItems != null && !Array.isArray(json.actionRequiredItems)) {
+      throw new FormatError(where, "le champ « actionRequiredItems » n'est pas une liste");
+    }
+    const merged = new Map();
+    for (const i of [...json.items, ...(json.actionRequiredItems || [])]) {
+      const key = isObject(i) ? (i.itemType || "") + ":" + i.id : merged.size + ":invalid";
+      const prev = merged.get(key);
+      if (!prev || String(i.updatedAt || "") > String(prev.updatedAt || "")) merged.set(key, prev ? { ...prev, ...i } : i);
+      else merged.set(key, { ...i, ...prev });
+    }
+    const items = [...merged.values()];
     if (!items.every(isObject)) throw new FormatError(where, "la liste contient des éléments qui ne sont pas des documents");
     if (items.some((i) => i.id == null)) throw new FormatError(where, "des documents n'ont pas d'« id »");
     if (items.some((i) => i.signees != null && !Array.isArray(i.signees))) {
@@ -370,6 +400,8 @@
     normalize,
     statusKey,
     statusLabel,
+    itemStatusKey,
+    isAwaiting,
     parseClasse,
     filiereOf,
     KNOWN_FILIERES,

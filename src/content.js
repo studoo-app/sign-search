@@ -209,7 +209,7 @@
       render();
     }
     // Les documents en attente sont ceux pour lesquels « qui manque ? » compte le plus.
-    loadDetails(state.records.filter((r) => r.status === "pending"));
+    loadDetails(state.records.filter((r) => C.isAwaiting(r.status)));
   }
 
   /** Lit le JSON d'une réponse ; une page HTML à la place signale un changement côté sign.com. */

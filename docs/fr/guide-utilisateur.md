@@ -28,7 +28,7 @@ Si vous cliquez sur l'icône alors que vous n'êtes pas sur sign.com, l'extensio
 │ ...                                                          │
 ├──────────────────────────────────────────────────────────────┤
 │ Liste chargée à 14:32        [Vérifier qui a signé (…)]      │
-│        Sign Search Convention v0.2.1 · Créé par Studoo Labs  │
+│        Sign Search Convention v0.2.2 · Créé par Studoo Labs  │
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -68,6 +68,7 @@ Les signataires qui correspondent à la recherche sont **surlignés en bleu**.
 |---|---|
 | Signé | Toutes les signatures sont faites, le document est scellé |
 | En attente | Envoyé, au moins une signature manque |
+| À signer | Votre propre signature est attendue (sign.com affiche « Sign document ») |
 | Expiré | Le délai de signature est dépassé |
 | Annulé | Annulé par l'expéditeur (sign.com écrit « Canceled » ou « Cancelled » ; les deux sont regroupés) |
 
@@ -114,7 +115,7 @@ Un document sans sigle au début de son nom n'a pas de classe. Il reste trouvabl
 
 La liste générale de sign.com ne précise pas l'état de chaque personne. L'extension va donc chercher le **détail** de chaque document :
 
-- **Automatiquement** pour tous les documents **En attente**, dès l'ouverture du panneau.
+- **Automatiquement** pour tous les documents **En attente** et **À signer**, dès l'ouverture du panneau.
 - **À la demande** pour les autres : bouton **« Vérifier qui a signé (résultats affichés) »** en bas du panneau. Il porte sur les 300 premiers résultats affichés.
 
 Pendant la vérification, le pied du panneau indique « vérification des signatures… (N) ».

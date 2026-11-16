@@ -120,6 +120,7 @@ a.name:hover { color: var(--accent); text-decoration: underline; }
 .badge.classe { background: var(--accent-soft); color: var(--accent); }
 .badge.st-sealed { background: #e5f4ec; color: var(--ok); }
 .badge.st-pending { background: #fdf1df; color: var(--wait); }
+.badge.st-to_sign { background: #e8eefc; color: #2f55c7; }
 .badge.st-expired, .badge.st-canceled { background: #f4f4f5; color: var(--muted); }
 .badge.missing { background: #fdf1df; color: var(--wait); }
 

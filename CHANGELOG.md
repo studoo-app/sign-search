@@ -9,6 +9,12 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), et les 
 
 ## [Non publié]
 
+## [0.2.2] - 2026-11-16
+
+### Corrigé
+
+- Les documents en attente de votre signature (affichés « Sign document » sur sign.com) n'apparaissaient pas : sign.com les renvoie dans une liste à part (`actionRequiredItems`) que l'extension ignorait. Ils sont maintenant inclus, avec le nouveau statut **À signer**, filtrable dans la liste des statuts, et le détail de leurs signataires (qui a signé, qui manque) est chargé comme pour les autres documents en attente.
+
 ## [0.2.1] - 2026-11-16
 
 ### Ajouté
@@ -55,7 +61,8 @@ Première version.
 - Documentation dans `docs/` : installation, guide d'utilisation, dépannage, architecture, développement, confidentialité.
 - Publication automatique : un workflow GitHub Actions construit le zip et le publie dans une Release.
 
-[Non publié]: https://github.com/studoo-app/sign-search/compare/v0.2.1...HEAD
+[Non publié]: https://github.com/studoo-app/sign-search/compare/v0.2.2...HEAD
+[0.2.2]: https://github.com/studoo-app/sign-search/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/studoo-app/sign-search/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/studoo-app/sign-search/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/studoo-app/sign-search/compare/v0.1.0...v0.1.1
