@@ -18,8 +18,5 @@ The extension's interface is in French.
 
 ## License
 
-Copyright © 2026 Studoo Labs. Released under the [European Union Public Licence v1.2](LICENSE) (EUPL-1.2). The official text exists in every EU language, including [French](https://eupl.eu/1.2/fr/), and each version is equally valid.
+Copyright © 2026 [Studoo Labs.](https://github.com/studoo-app) Released under the [European Union Public Licence v1.2](LICENSE) (EUPL-1.2). The official text exists in every EU language, and each version is equally valid. The French text is in [docs/fr/LICENCE.md](docs/fr/LICENCE.md).
 
----
-
-Made by [Studoo Labs](https://github.com/studoo-app).

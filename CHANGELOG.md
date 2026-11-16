@@ -11,7 +11,7 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), et les 
 
 ### Ajouté
 
-- Licence open source : [EUPL-1.2](LICENSE). Le fichier `LICENSE` est aussi inclus dans le zip de chaque version.
+- Licence open source : [EUPL-1.2](LICENSE). Le texte anglais est dans `LICENSE`, à la racine ; le texte français est dans [docs/fr/LICENCE.md](docs/fr/LICENCE.md). Le fichier `LICENSE` est aussi inclus dans le zip de chaque version.
 - Message d'erreur explicite quand sign.com modifie le format de son API : « sign.com a modifié le format de ses données », avec le détail technique et un lien vers le dépôt. Auparavant, un changement de format pouvait donner une liste vide sans aucune erreur.
 - Avertissement dans le pied du panneau quand le détail des signatures n'a plus le format attendu.
 

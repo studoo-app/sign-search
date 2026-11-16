@@ -28,6 +28,6 @@ Cette documentation correspond à la version **0.2.0** de l'extension. L'histori
 
 ## Licence
 
-Copyright © 2026 Studoo Labs. L'extension est distribuée sous [licence publique de l'Union européenne v1.2](../../LICENSE) (EUPL-1.2). Le texte officiel existe dans toutes les langues de l'UE, dont le [français](https://eupl.eu/1.2/fr/), et chaque version fait également foi.
+Copyright © 2026 Studoo Labs. L'extension est distribuée sous [licence publique de l'Union européenne v1.2](LICENCE.md) (EUPL-1.2). Le texte officiel existe dans toutes les langues de l'UE et chaque version fait également foi : le texte français est dans [LICENCE.md](LICENCE.md), le texte anglais dans [`LICENSE`](../../LICENSE) à la racine du dépôt.
 
 En résumé : vous pouvez utiliser, copier, modifier et redistribuer l'extension. Si vous distribuez une version modifiée, elle doit rester sous EUPL (ou une licence compatible) avec son code source.
