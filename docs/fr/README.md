@@ -1,3 +1,5 @@
+[English](../en/README.md) · **Français**
+
 # Documentation — Sign Search Convention
 
 Sign Search Convention est une extension pour Chrome et Brave. Elle ajoute à [sign.com](https://sign.com) un panneau qui permet de retrouver en quelques secondes **à qui appartient chaque document** : noms complets des signataires, emails, classe, et qui a signé ou non.
@@ -22,4 +24,4 @@ Sign Search Convention est une extension pour Chrome et Brave. Elle ajoute à [s
 
 ## Version
 
-Cette documentation correspond à la version **0.2.0** de l'extension. L'historique des versions est dans le [CHANGELOG](../CHANGELOG.md).
+Cette documentation correspond à la version **0.2.0** de l'extension. L'historique des versions est dans le [CHANGELOG](../../CHANGELOG.md).

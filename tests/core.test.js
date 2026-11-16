@@ -172,7 +172,7 @@ test("parseDetail : format /api/sign-requests/:id (signees)", () => {
   assert.deepEqual(C.parseDetail(null), []);
 });
 
-test("exemples documentés dans docs/nommage.md", () => {
+test("exemples documentés dans docs/fr/nommage.md et docs/en/file-naming.md", () => {
   const cas = {
     "MCO1 DUPONT Jean - Convention ACME.pdf": "MCO1",
     "MCO1_DUPONT.pdf": "MCO1",

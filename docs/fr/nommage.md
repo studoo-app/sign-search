@@ -1,3 +1,5 @@
+[English](../en/file-naming.md) · **Français**
+
 # Nommer les fichiers pour que la filière et la classe soient reconnues
 
 Sign Search Convention ne lit pas le contenu des PDF. Elle déduit la **classe** (MCO1, SIO2…) et la **filière** (MCO, SIO…) **uniquement à partir du début du nom de fichier** envoyé dans sign.com. Ces deux informations alimentent le filtre « Classe » du panneau et la colonne « Classes » de la vue Personnes.

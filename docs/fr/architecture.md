@@ -1,3 +1,5 @@
+[English](../en/architecture.md) · **Français**
+
 # Architecture
 
 ## Vue d'ensemble
@@ -55,6 +57,7 @@ Ce fichier ne dépend ni du DOM ni de `chrome.*`. Il est exposé sous `globalThi
 - Charge `panel.css` comme **feuille de style construite** (`CSSStyleSheet.replaceSync` + `adoptedStyleSheets`). Cela évite d'être bloqué par la politique CSP du site. En dernier recours, il utilise une balise `<link>`.
 - Construit tout le DOM avec un petit utilitaire `h()`. Les données passent **uniquement** par `textContent` et des attributs, **jamais par `innerHTML`**, ce qui écarte le risque d'injection via un nom de fichier.
 - Arrête la propagation des touches dans le panneau, pour que les raccourcis clavier de sign.com ne captent pas la frappe.
+- Le pied affiche la version, lue avec `chrome.runtime.getManifest()`, et un lien vers Studoo Labs.
 
 État interne (objet `state`) :
 

@@ -1,3 +1,5 @@
+[English](../en/user-guide.md) · **Français**
+
 # Guide d'utilisation
 
 ## Ouvrir et fermer le panneau
@@ -26,6 +28,7 @@ Si vous cliquez sur l'icône alors que vous n'êtes pas sur sign.com, l'extensio
 │ ...                                                          │
 ├──────────────────────────────────────────────────────────────┤
 │ Liste chargée à 14:32        [Vérifier qui a signé (…)]      │
+│        Sign Search Convention v0.2.0 · Créé par Studoo Labs  │
 └──────────────────────────────────────────────────────────────┘
 ```
 

@@ -1,3 +1,5 @@
+[English](../en/development.md) · **Français**
+
 # Développement
 
 ## Prérequis
@@ -10,9 +12,10 @@
 
 ```
 sign-search/
-├── .github/workflows/  release.yml : tests + zip + Release GitHub
+├── .github/workflows/   release.yml : tests + zip + Release GitHub
 ├── manifest.json        Manifest V3
 ├── package.json         scripts npm (test, zip)
+├── CHANGELOG.md         historique des versions
 ├── icons/               icônes 16/32/48/128 px
 ├── src/
 │   ├── background.js    service worker : icône + raccourci clavier
@@ -21,7 +24,9 @@ sign-search/
 │   └── panel.css        styles du panneau (chargés dans le Shadow DOM)
 ├── tests/
 │   └── core.test.js     tests unitaires (node:test), données fictives
-└── docs/                cette documentation
+└── docs/
+    ├── en/              documentation en anglais
+    └── fr/              documentation en français
 ```
 
 ## Commandes
@@ -52,6 +57,7 @@ Pour le débogage :
 - **Pas de stockage des données sign.com**, ni de nouvelle permission sans en discuter (voir [sécurité](securite.md)).
 - **Tests sur données fictives uniquement** : aucun vrai nom ni email dans le dépôt.
 - Textes de l'interface et commentaires en **français**.
+- **Documentation dans les deux langues** : toute modification de `docs/fr/` doit être reportée dans `docs/en/`, et inversement.
 
 ## Recettes
 
@@ -65,7 +71,7 @@ const KNOWN_FILIERES = [
 ];
 ```
 
-Ajoutez ensuite un cas dans le test « parseClasse reconnaît les préfixes de classe ».
+Ajoutez ensuite un cas dans le test « parseClasse reconnaît les préfixes de classe », et mettez à jour la liste dans [Nommage des fichiers](nommage.md) (et sa version anglaise).
 
 ### Ajouter un statut
 

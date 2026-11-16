@@ -1,3 +1,5 @@
+[English](../en/security.md) · **Français**
+
 # Confidentialité et sécurité
 
 Les documents gérés dans sign.com contiennent des données personnelles : noms et emails d'élèves, de tuteurs et d'entreprises. L'extension est conçue pour **ne rien ajouter** aux endroits où ces données circulent ou sont conservées.

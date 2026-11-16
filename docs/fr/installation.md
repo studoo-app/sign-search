@@ -1,3 +1,5 @@
+[English](../en/installation.md) · **Français**
+
 # Installation
 
 L'extension n'est pas publiée sur le Chrome Web Store. On l'installe en **mode développeur**, ce qui prend environ une minute.

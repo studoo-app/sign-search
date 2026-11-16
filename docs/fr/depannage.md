@@ -1,3 +1,5 @@
+[English](../en/troubleshooting.md) · **Français**
+
 # Dépannage et FAQ
 
 ## Le bouton « 🔎 Rechercher » n'apparaît pas
