@@ -2,7 +2,7 @@
 
 # Installation
 
-The extension is not published on the Chrome Web Store. It is installed in **developer mode**, which takes about a minute.
+The extension is not published on the Chrome Web Store. You install it by hand, in **developer mode**. Allow 5 minutes the first time. Follow the steps in order: each one is illustrated.
 
 ## Requirements
 
@@ -27,39 +27,82 @@ The extension works in **Chromium**-based browsers (Manifest V3, version 88 or l
 
 Chrome and Brave are the reference browsers. The other Chromium browsers use the same engine and APIs, but are not tested for every release: if something goes wrong, open an issue on the repository.
 
-## 1. Get the extension
+## 1. Download the extension
 
-**Recommended**: download the latest release archive, then unzip it.
+1. Open the latest release page: https://github.com/studoo-app/sign-search/releases/latest
+2. At the bottom of the page, under **Assets**, click **sign-search.zip**. The download starts on its own. You don't need a GitHub account.
 
-> https://github.com/studoo-app/sign-search/releases/latest/download/sign-search.zip
+   ![The "Assets" section of the GitHub page, with the sign-search.zip file highlighted](../images/installation/01-telecharger.png)
 
-This archive is built automatically by GitHub Actions for every new version. It contains only the extension and its licence (`manifest.json`, `LICENSE`, `src/`, `icons/`), without tests or documentation. Previous versions are on the repository's **Releases** page.
+   Direct link, if you prefer: [sign-search.zip](https://github.com/studoo-app/sign-search/releases/latest/download/sign-search.zip).
 
-> While the repository is **private**, you must be signed in to GitHub with an account that has access to it to download the archive.
+3. The file lands in your **Downloads** folder.
 
-Other options, for development:
+> Don't take **sign-search-0.4.0.zip** or **Source code**: they are not meant for this installation.
 
-- `git clone https://github.com/studoo-app/sign-search.git`;
-- **Code → Download ZIP** on the repository page.
+## 2. Unzip the file
 
-Put the folder somewhere **permanent**, for example `Documents/Extensions/sign-search`. The browser loads the extension from this folder on every start: don't delete or move it.
+A `.zip` file is a package that holds several files. You need to open it to take them out:
 
-## 2. Load the extension
+- **On Mac**: open your **Downloads** folder and double-click **sign-search.zip**.
+- **On Windows**: open your **Downloads** folder, right-click **sign-search.zip**, choose **Extract All…**, then click **Extract**.
 
-Open your browser's extensions page, for example `chrome://extensions` or `brave://extensions` (the addresses for other browsers are in the [compatible browsers table](#compatible-browsers)).
+A **sign-search** folder appears next to the `.zip` file.
 
-1. Turn on **Developer mode** (toggle at the top right).
-2. Click **Load unpacked**.
-3. Select the folder that contains `manifest.json`. Not a parent folder, and not the zip.
-4. The "Sign Search Convention" card appears. Enable it if it isn't already.
+![Unzipping sign-search.zip on Mac (double-click) and on Windows (right-click, then Extract All)](../images/installation/en/02-unzip.png)
 
-**Tip**: pin the icon. Click the puzzle piece in the toolbar, then the pin next to "Sign Search Convention".
+## 3. Put the folder in the right place
 
-## 3. Check
+The browser reads this folder **every time it starts**. So put it somewhere you won't delete it by mistake (the Downloads folder often gets emptied). We recommend **Documents › Extensions**:
+
+1. Open your **Documents** folder.
+2. Create a new folder named **Extensions**:
+   - on Mac: right-click in the window → **New Folder**;
+   - on Windows: right-click in the window → **New** → **Folder**.
+3. Drag the **sign-search** folder (from step 2) into **Extensions**.
+4. Open **sign-search** to check: you should see **manifest.json**, **LICENSE**, **icons** and **src**.
+
+![Create Documents › Extensions, move sign-search into it, then check that manifest.json is inside](../images/installation/en/03-store-folder.png)
+
+If you see a **second sign-search folder** inside the first one instead of `manifest.json`, that second folder is the one to choose in step 4.
+
+You can then delete **sign-search.zip** from Downloads: you no longer need it.
+
+> **For developers**: `git clone https://github.com/studoo-app/sign-search.git` works too. The `sign-search.zip` archive is built by GitHub Actions for every version and contains only the extension (`manifest.json`, `LICENSE`, `src/`, `icons/`).
+
+## 4. Install the extension in the browser
+
+1. Open your browser, type `chrome://extensions` in the address bar (at the top of the window), then press **Enter**. With Brave, type `brave://extensions`. The addresses for other browsers are in the [compatible browsers table](#compatible-browsers).
+2. At the top right, turn on the **Developer mode** toggle.
+
+   ![The "Developer mode" toggle at the top right of the extensions page](../images/installation/en/04-developer-mode.png)
+
+3. New buttons appear. Click **Load unpacked**.
+
+   ![The "Load unpacked" button](../images/installation/en/05-load-unpacked.png)
+
+4. A window opens to choose a folder. Go to **Documents › Extensions**, click the **sign-search** folder **once**, then click **Select** (on Windows: **Select Folder**). Don't pick the `.zip` file.
+
+   ![Folder picker: sign-search selected, then the Select button](../images/installation/en/06-choose-folder.png)
+
+5. The **Sign Search Convention** card appears. Check that its toggle, at the bottom right of the card, is blue (on).
+
+   ![The "Sign Search Convention" card with its toggle turned on](../images/installation/en/07-extension-card.png)
+
+**Tip**: pin the icon to keep it handy. Click the puzzle piece 🧩 at the top right of the browser, then the pin 📌 next to "Sign Search Convention".
+
+## 5. Check that everything works
 
 1. Open (or reload) https://sign.com/storage/all-documents.
 2. The **🔎 Rechercher** button appears at the bottom right.
+
+   ![The "🔎 Rechercher" button at the bottom right of the page](../images/installation/08-bouton-rechercher.png)
+
 3. Click it: the panel opens and shows "X / X documents".
+
+   ![The search panel open, with the list of documents](../images/installation/09-panneau.png)
+
+> The screenshots were taken with a clean browser and made-up data. Steps 2 and 3, and the folder picker in step 4, are simplified illustrations: the exact look depends on your computer. The extension itself is in French.
 
 ## Update
 

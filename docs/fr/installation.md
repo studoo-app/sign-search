@@ -2,7 +2,7 @@
 
 # Installation
 
-L'extension n'est pas publiée sur le Chrome Web Store. On l'installe en **mode développeur**, ce qui prend environ une minute.
+L'extension n'est pas publiée sur le Chrome Web Store. On l'installe à la main, en **mode développeur**. Comptez 5 minutes la première fois. Suivez les étapes dans l'ordre : chaque étape est illustrée.
 
 ## Prérequis
 
@@ -27,39 +27,82 @@ L'extension fonctionne dans les navigateurs basés sur **Chromium** (Manifest V3
 
 Chrome et Brave sont les navigateurs de référence. Les autres navigateurs Chromium utilisent le même moteur et les mêmes API, mais ne sont pas testés à chaque version : en cas de problème, ouvrez un ticket sur le dépôt.
 
-## 1. Récupérer l'extension
+## 1. Télécharger l'extension
 
-**Méthode recommandée** : téléchargez l'archive de la dernière version, puis décompressez-la.
+1. Ouvrez la page de la dernière version : https://github.com/studoo-app/sign-search/releases/latest
+2. En bas de la page, dans la partie **Assets**, cliquez sur **sign-search.zip**. Le téléchargement démarre tout seul. Il n'y a pas besoin de compte GitHub.
 
-> https://github.com/studoo-app/sign-search/releases/latest/download/sign-search.zip
+   ![Partie « Assets » de la page GitHub, avec le fichier sign-search.zip encadré](../images/installation/01-telecharger.png)
 
-Cette archive est construite automatiquement par GitHub Actions à chaque nouvelle version. Elle contient uniquement l'extension et sa licence (`manifest.json`, `LICENSE`, `src/`, `icons/`), sans les tests ni la documentation. Les versions précédentes se trouvent sur la page **Releases** du dépôt.
+   Lien direct, si vous préférez : [sign-search.zip](https://github.com/studoo-app/sign-search/releases/latest/download/sign-search.zip).
 
-> Tant que le dépôt est **privé**, il faut être connecté à GitHub avec un compte qui y a accès pour télécharger l'archive.
+3. Le fichier arrive dans votre dossier **Téléchargements**.
 
-Autres possibilités, pour développer :
+> Ne prenez pas **sign-search-0.4.0.zip** ni **Source code** : ils ne sont pas faits pour cette installation.
 
-- `git clone https://github.com/studoo-app/sign-search.git` ;
-- **Code → Download ZIP** sur la page du dépôt.
+## 2. Décompresser le fichier
 
-Placez le dossier à un endroit **stable**, par exemple `Documents/Extensions/sign-search`. Le navigateur charge l'extension depuis ce dossier à chaque démarrage : il ne faut pas le supprimer ni le déplacer.
+Un fichier `.zip` est un paquet qui contient plusieurs fichiers. Il faut l'ouvrir pour les sortir :
 
-## 2. Charger l'extension
+- **Sur Mac** : ouvrez le dossier **Téléchargements** et double-cliquez sur **sign-search.zip**.
+- **Sur Windows** : ouvrez le dossier **Téléchargements**, faites un clic droit sur **sign-search.zip**, choisissez **Extraire tout…**, puis cliquez sur **Extraire**.
 
-Ouvrez la page des extensions de votre navigateur, par exemple `chrome://extensions` ou `brave://extensions` (les adresses des autres navigateurs sont dans le [tableau des navigateurs compatibles](#navigateurs-compatibles)).
+Un dossier **sign-search** apparaît à côté du fichier `.zip`.
 
-1. Activez le **Mode développeur** (interrupteur en haut à droite).
-2. Cliquez sur **Charger l'extension non empaquetée**.
-3. Sélectionnez le dossier qui contient `manifest.json`. Attention : pas un dossier parent, ni le zip.
-4. La carte « Sign Search Convention » apparaît. Activez-la si elle ne l'est pas déjà.
+![Décompresser sign-search.zip sur Mac (double-clic) et sur Windows (clic droit, puis Extraire tout)](../images/installation/02-decompresser.png)
 
-**Conseil** : épinglez l'icône. Cliquez sur la pièce de puzzle dans la barre d'outils, puis sur la punaise à côté de « Sign Search Convention ».
+## 3. Ranger le dossier au bon endroit
 
-## 3. Vérifier
+Le navigateur relit ce dossier **à chaque démarrage**. Il faut donc le mettre à un endroit où vous ne le supprimerez pas par erreur (le dossier Téléchargements est souvent vidé). Nous vous conseillons **Documents › Extensions** :
+
+1. Ouvrez votre dossier **Documents**.
+2. Créez un nouveau dossier nommé **Extensions** :
+   - sur Mac : clic droit dans la fenêtre → **Nouveau dossier** ;
+   - sur Windows : clic droit dans la fenêtre → **Nouveau** → **Dossier**.
+3. Faites glisser le dossier **sign-search** (celui de l'étape 2) dans **Extensions**.
+4. Ouvrez **sign-search** pour vérifier : vous devez voir **manifest.json**, **LICENSE**, **icons** et **src**.
+
+![Créer Documents › Extensions, y déplacer sign-search, puis vérifier que manifest.json est bien dedans](../images/installation/03-ranger-dossier.png)
+
+Si vous voyez un **second dossier sign-search** à l'intérieur du premier, au lieu de `manifest.json`, c'est ce second dossier qu'il faudra choisir à l'étape 4.
+
+Vous pouvez ensuite supprimer **sign-search.zip** des Téléchargements : il ne sert plus.
+
+> **Pour les développeurs** : `git clone https://github.com/studoo-app/sign-search.git` fonctionne aussi. L'archive `sign-search.zip` est construite par GitHub Actions à chaque version et ne contient que l'extension (`manifest.json`, `LICENSE`, `src/`, `icons/`).
+
+## 4. Installer l'extension dans le navigateur
+
+1. Ouvrez votre navigateur, tapez `chrome://extensions` dans la barre d'adresse (en haut de la fenêtre), puis appuyez sur **Entrée**. Avec Brave, tapez `brave://extensions`. Les adresses des autres navigateurs sont dans le [tableau des navigateurs compatibles](#navigateurs-compatibles).
+2. En haut à droite, activez l'interrupteur **Mode développeur**.
+
+   ![Interrupteur « Mode développeur » en haut à droite de la page des extensions](../images/installation/04-mode-developpeur.png)
+
+3. De nouveaux boutons apparaissent. Cliquez sur **Charger l'extension non empaquetée**.
+
+   ![Bouton « Charger l'extension non empaquetée »](../images/installation/05-charger-extension.png)
+
+4. Une fenêtre s'ouvre pour choisir un dossier. Allez dans **Documents › Extensions**, cliquez **une seule fois** sur le dossier **sign-search**, puis sur **Sélectionner** (sur Windows : **Sélectionner un dossier**). Ne choisissez pas le fichier `.zip`.
+
+   ![Fenêtre de choix du dossier : sign-search sélectionné, puis bouton Sélectionner](../images/installation/06-choisir-dossier.png)
+
+5. La carte **Sign Search Convention** apparaît. Vérifiez que son interrupteur, en bas à droite de la carte, est bien bleu (activé).
+
+   ![Carte « Sign Search Convention » avec son interrupteur activé](../images/installation/07-carte-extension.png)
+
+**Conseil** : épinglez l'icône pour la garder sous la main. Cliquez sur la pièce de puzzle 🧩 en haut à droite du navigateur, puis sur la punaise 📌 à côté de « Sign Search Convention ».
+
+## 5. Vérifier que tout fonctionne
 
 1. Ouvrez (ou rechargez) https://sign.com/storage/all-documents.
 2. Le bouton **🔎 Rechercher** apparaît en bas à droite.
+
+   ![Bouton « 🔎 Rechercher » en bas à droite de la page](../images/installation/08-bouton-rechercher.png)
+
 3. Cliquez dessus : le panneau s'ouvre et affiche « X / X documents ».
+
+   ![Panneau de recherche ouvert, avec la liste des documents](../images/installation/09-panneau.png)
+
+> Les captures sont faites avec un navigateur vierge et des données fictives. Les étapes 2, 3 et 4 (fenêtre de choix) sont des illustrations simplifiées : l'apparence exacte dépend de votre ordinateur.
 
 ## Mettre à jour
 
