@@ -26,7 +26,7 @@ Sign Search Convention is a Chrome and Brave extension. It adds a panel to [sign
 
 ## Version
 
-This documentation matches version **0.3.0** of the extension. The version history is in the [CHANGELOG](../../CHANGELOG.md) (in French).
+This documentation matches version **0.4.0** of the extension. The version history is in the [CHANGELOG](../../CHANGELOG.md) (in French).
 
 ## License
 
