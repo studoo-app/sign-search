@@ -9,6 +9,10 @@ Le format suit [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), et les 
 
 ## [Non publié]
 
+### Ajouté
+
+- Documents **À signer** : votre badge surligné en orange est un lien qui ouvre directement la page de signature du document (`/sign/…`).
+
 ## [0.3.0] - 2026-11-16
 
 ### Modifié

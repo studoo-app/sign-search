@@ -86,6 +86,8 @@ test("liens vers les documents selon le type", () => {
   assert.equal(records[1].url, "/request-pdf/b2");
   assert.equal(C.detailApiUrl(raw[0]), "/api/sign-requests/pub111");
   assert.equal(C.detailApiUrl(raw[1]), "/api/documents/b2");
+  assert.equal(records[0].signUrl, "/sign/pub111");
+  assert.equal(records[1].signUrl, null);
 });
 
 test("signataires triés par ordre", () => {

@@ -409,13 +409,20 @@
         const cls = ["chip", hit.has(s.id) ? "hit" : "", senders.has(C.normalize(s.email)) ? "me" : "", toSign ? "to-sign" : waiting ? "pending" : ""]
           .filter(Boolean)
           .join(" ");
-        return h(
-          "li",
-          { class: cls, title: toSign ? s.email + " — signature attendue" : s.email },
+        const content = [
           statusIcon(st),
           h("span", { class: "who" }, s.name || s.email || "?"),
-          s.name && s.email ? h("span", { class: "mail" }, s.email) : null
-        );
+          s.name && s.email ? h("span", { class: "mail" }, s.email) : null,
+        ];
+        // Compte connecté attendu : le badge mène directement à la page de signature.
+        if (toSign && r.signUrl) {
+          return h(
+            "li",
+            { class: cls },
+            h("a", { class: "sign-link", href: r.signUrl, target: "_blank", rel: "noopener", title: s.email + " — signer le document" }, ...content)
+          );
+        }
+        return h("li", { class: cls, title: toSign ? s.email + " — signature attendue" : s.email }, ...content);
       });
 
       list.appendChild(

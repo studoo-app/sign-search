@@ -94,6 +94,14 @@
     return null;
   }
 
+  /** Lien vers la page de signature d'un document (« À signer »), ou null. */
+  function signUrl(item) {
+    if (item.itemType === "signRequest" && item.publicSignRequestId) {
+      return "/sign/" + item.publicSignRequestId;
+    }
+    return null;
+  }
+
   /** Transforme un élément brut de /api/documents en objet prêt à afficher. */
   function toRecord(item) {
     const signees = (item.signees || [])
@@ -121,6 +129,7 @@
       createdAt: item.createdAt || "",
       updatedAt: item.updatedAt || item.createdAt || "",
       url: documentUrl(item),
+      signUrl: signUrl(item),
       sender,
       signees,
     };
@@ -447,6 +456,7 @@
     filiereOf,
     KNOWN_FILIERES,
     documentUrl,
+    signUrl,
     toRecord,
     tokenize,
     matches,
